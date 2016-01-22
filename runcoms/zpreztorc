@@ -36,11 +36,9 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'osx' \
   'syntax-highlighting' \
-  'prompt' \
+  'prompt'
 
 # `directory` options
-setopt CLOBBER
-setopt EXTENDED_GLOB
 
 #
 # Autosuggestions
