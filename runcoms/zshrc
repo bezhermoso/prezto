@@ -13,7 +13,7 @@ fi
 # Customize to your needs...
 
 setopt NO_CLOBBER
-setopt AUTO_CD
+#setopt AUTO_CD
 setopt MULTIOS
 setopt AUTO_PUSHD
 setopt GLOB_COMPLETE
@@ -22,4 +22,6 @@ setopt PUSHD_MINUS
 setopt PUSHD_TO_HOME
 setopt PUSHD_IGNORE_DUPS
 setopt RM_STAR_WAIT
-setopt IGNORE_BRACES
+
+# Show trailing slash on directories on `ls`
+alias ls="ls -GF"

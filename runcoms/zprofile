@@ -98,7 +98,7 @@ function powerline_lib_path() {
 }
 
 function src() {
-  source $HOME/.zshrc
+  source $HOME/.zprofile
 }
 
 export POWERLINE_PATH=$(powerline_lib_path)/powerline
@@ -133,4 +133,19 @@ source "$HOME/.console/console.rc" 2>/dev/null
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export HOMEBREW_GITHUB_API_TOKEN=182130e66d4c5dfed0395ffd2509c601d74400af
 
+alias vim=nvim
 alias quit=exit
+
+function dark() {
+  if [[ "$1" != "" ]]; then
+    export BASE16_FLAVOR="$1"
+  fi
+  export BACKGROUND='dark' && src
+}
+
+function light() {
+  if [[ "$1" != "" ]]; then
+    export BASE16_FLAVOR="$1"
+  fi
+  export BACKGROUND="light" && src
+}
