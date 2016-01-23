@@ -140,6 +140,7 @@ function dark() {
   if [[ "$1" != "" ]]; then
     export BASE16_FLAVOR="$1"
   fi
+  export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=default
   export BACKGROUND='dark' && src
 }
 
@@ -147,5 +148,12 @@ function light() {
   if [[ "$1" != "" ]]; then
     export BASE16_FLAVOR="$1"
   fi
+  export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=light
   export BACKGROUND="light" && src
 }
+
+# tmux variables
+export TMUX_BORDER_FG=colour255
+export TMUX_BORDER_BG=colour236
+export TMUX_BORDER_FG_ACTIVE=colour160
+export TMUX_BORDER_BG_ACTIVE=colour236
