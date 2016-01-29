@@ -46,7 +46,7 @@ export PATH="/Projects/Personal/DrupalConsole/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$PATH"
 
 # phpbrew
-[[ -s "${HOME}/.phpbrew/bashrc" ]] && source /Users/bez/.phpbrew/bashrc
+[[ -s "${HOME}/.phpbrew/bashrc" ]] && source "$HOME/.phpbrew/bashrc"
 
 # nvm
 export NVM_DIR="/Users/bez/.nvm"
@@ -134,6 +134,7 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 export HOMEBREW_GITHUB_API_TOKEN=182130e66d4c5dfed0395ffd2509c601d74400af
 
 alias vim=nvim
+alias vi=nvim
 alias quit=exit
 
 function dark() {
@@ -157,3 +158,4 @@ export TMUX_BORDER_FG=colour255
 export TMUX_BORDER_BG=colour236
 export TMUX_BORDER_FG_ACTIVE=colour160
 export TMUX_BORDER_BG_ACTIVE=colour236
+
