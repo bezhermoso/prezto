@@ -101,6 +101,26 @@ function src() {
   source $HOME/.zprofile
 }
 
+function dark() {
+  if [[ "$1" != "" ]]; then
+    export BASE16_FLAVOR="$1"
+  fi
+  export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=default
+  export TMUX_BORDER_FG_ACTIVE=colour4
+  export BACKGROUND='dark'
+}
+
+function light() {
+  if [[ "$1" != "" ]]; then
+    export BASE16_FLAVOR="$1"
+  fi
+  export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=light
+  export TMUX_BORDER_FG_ACTIVE=colour1
+  export BACKGROUND="light"
+}
+
+dark bright
+
 export POWERLINE_PATH=$(powerline_lib_path)/powerline
 export HISTINGORE='clear:history'
 export HISTORYCONTROL='ignoreboth'
@@ -137,25 +157,9 @@ alias vim=nvim
 alias vi=nvim
 alias quit=exit
 
-function dark() {
-  if [[ "$1" != "" ]]; then
-    export BASE16_FLAVOR="$1"
-  fi
-  export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=default
-  export BACKGROUND='dark' && src
-}
-
-function light() {
-  if [[ "$1" != "" ]]; then
-    export BASE16_FLAVOR="$1"
-  fi
-  export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=light
-  export BACKGROUND="light" && src
-}
 
 # tmux variables
-export TMUX_BORDER_FG=colour255
-export TMUX_BORDER_BG=colour236
-export TMUX_BORDER_FG_ACTIVE=colour160
-export TMUX_BORDER_BG_ACTIVE=colour236
+#export TMUX_BORDER_FG=colour255
+#export TMUX_BORDER_BG=colour236
+#export TMUX_BORDER_BG_ACTIVE=colour236
 
