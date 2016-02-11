@@ -39,6 +39,8 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
+export PATH="$HOME/Library/Python/3.5/bin:$PATH"
+
 # Drupal Console
 export PATH="/Projects/Personal/DrupalConsole/bin:$PATH"
 
@@ -92,6 +94,8 @@ fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
 
+export TMUX_CONFIG_DIR="$HOME/.dotfiles/tmux"
+
 
 function powerline_lib_path() {
   pip show powerline-status | grep Location | awk '{print $2}'
@@ -107,7 +111,9 @@ function dark() {
   fi
   export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=default
   export TMUX_BORDER_FG_ACTIVE=colour4
+  export TMUX_BORDER_FG=colour240
   export BACKGROUND='dark'
+  export THEME_CHANGED=1
 }
 
 function light() {
@@ -116,10 +122,14 @@ function light() {
   fi
   export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=light
   export TMUX_BORDER_FG_ACTIVE=colour1
+  export TMUX_BORDER_FG=colour248
   export BACKGROUND="light"
+  export THEME_CHANGED=1
 }
 
-dark bright
+if [[ -z "$THEME_CHANGED" ]]; then
+  dark bright
+fi
 
 export POWERLINE_PATH=$(powerline_lib_path)/powerline
 export HISTINGORE='clear:history'
@@ -131,6 +141,8 @@ export VIM_COLOR="base16-${BASE16_FLAVOR}"
 export BACKGROUND=${BACKGROUND:-"dark"}
 
 BASE16_SHELL="$HOME/TerminalMods/base16-shell/base16-${BASE16_FLAVOR}.${BACKGROUND}.sh"
+
+export THEME_CHANGED=0
 
 # Avoid flickering in tmux
 if [[ -z "$TMUX" ]]; then
@@ -163,3 +175,12 @@ alias quit=exit
 #export TMUX_BORDER_BG=colour236
 #export TMUX_BORDER_BG_ACTIVE=colour236
 
+alias ydl="youtube-dl"
+
+# Open `HUD` tmux session when invoking the HUD terminal in iTerm via the
+# global hotkey. Create the session if it isn't there yet.
+if [[ "$ITERM_PROFILE" == "Hotkey Window" ]]; then
+  mux HUD
+fi
+
+alias color-table="vim +XtermColorTable +only"
