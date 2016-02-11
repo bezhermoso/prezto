@@ -140,8 +140,14 @@ function prompt_bezorin_setup {
 
   # Define prompts.
   PROMPT=$'\n%F{12}%B%n%b%f%F{12}@%m%f in ${_prompt_bezorin_pwd}%(?:: %F{1}< %U$?%u >%f)${git_info:+\n${(e)git_info[status]}}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
+  tmux_pwd
   RPROMPT=''
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
+}
+
+function tmux_pwd() {
+  # Trick from https://github.com/erikw/tmux-powerline
+  PROMPT="$PROMPT"'$([ -n "$TMUX_PANE" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 }
 
 function prompt_bezorin_preview {
