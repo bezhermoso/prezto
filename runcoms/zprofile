@@ -29,7 +29,7 @@ if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
 
-#
+
 # Paths
 #
 
@@ -49,6 +49,8 @@ export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$PATH"
 
 # phpbrew
 [[ -s "${HOME}/.phpbrew/bashrc" ]] && source "$HOME/.phpbrew/bashrc"
+
+export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # nvm
 export NVM_DIR="/Users/bez/.nvm"
@@ -179,8 +181,12 @@ alias ydl="youtube-dl"
 
 # Open `HUD` tmux session when invoking the HUD terminal in iTerm via the
 # global hotkey. Create the session if it isn't there yet.
-if [[ "$ITERM_PROFILE" == "Hotkey Window" ]]; then
+if [[ -z "$TMUX_PANE" && "$ITERM_PROFILE" == "Hotkey Window" ]]; then
   mux HUD
 fi
 
 alias color-table="vim +XtermColorTable +only"
+
+function csview() {
+  cat "$1" | column -s, -t | less -#5 -SN 
+}

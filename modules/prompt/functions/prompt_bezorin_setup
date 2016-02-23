@@ -42,7 +42,7 @@ function prompt_bezorin_pwd {
     #_tilded_pwd="${PWD/#$HOME/~}"
     #_head_pwd="${_tilded_pwd:h}"
     #_tail_pwd="${_tilded_pwd:t}"
-    
+
     #if [[ "$_head_pwd" == "/" ]]; then
       #_prompt_bezorin_pwd="%F{3}/${_tail_pwd}%f"
     #else
@@ -139,15 +139,10 @@ function prompt_bezorin_setup {
     'status' ' %F{245}[%f$(coalesce "%b" "%c"):%s%A%B%S%a%d%m%r%U%u %F{245}]%f'
 
   # Define prompts.
-  PROMPT=$'\n%F{12}%B%n%b%f%F{12}@%m%f in ${_prompt_bezorin_pwd}%(?:: %F{1}< %U$?%u >%f)${git_info:+\n${(e)git_info[status]}}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
-  tmux_pwd
+  PROMPT=$'\n%F{12}%B%n%b%f%F{12}@%m%f in ${_prompt_bezorin_pwd}%(?:: %F{1}< %U$?%u >%f)${git_info:+\n${(e)git_info[status]}}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]}$(tmux-register-lang-versions &>/dev/null &) '
+  #PROMPT=$'\n%F{12}%B%n%b%f%F{12}@%m%f in ${_prompt_bezorin_pwd}%(?:: %F{1}< %U$?%u >%f)${git_info:+\n${(e)git_info[status]}}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
   RPROMPT=''
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
-}
-
-function tmux_pwd() {
-  # Trick from https://github.com/erikw/tmux-powerline
-  PROMPT="$PROMPT"'$([ -n "$TMUX_PANE" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 }
 
 function prompt_bezorin_preview {
