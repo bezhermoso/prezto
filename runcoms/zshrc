@@ -26,3 +26,4 @@ setopt RM_STAR_WAIT
 # Show trailing slash on directories on `ls`
 alias ls="ls -GF"
 bindkey "^r" history-incremental-search-backward
+tmux-register-lang-versions
