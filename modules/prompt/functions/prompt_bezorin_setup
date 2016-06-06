@@ -59,6 +59,8 @@ function prompt_bezorin_git_info {
       source "$_prompt_bezorin_precmd_async_data"
       #RPROMPT+='${git_info:+${(e)git_info[status]}}'
       unalias typeset
+    else
+      unset git_info
     fi
 
     # Reset PID.
