@@ -28,6 +28,8 @@ alias ls="ls -GF"
 bindkey "^r" history-incremental-search-backward
 tmux-register-lang-versions
 
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 export TMUX_CONFIG_DIR="$HOME/.dotfiles/tmux"
 
 
@@ -44,7 +46,7 @@ function dark() {
     export BASE16_FLAVOR="$1"
   fi
   export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=default
-  export TMUX_BORDER_FG_ACTIVE=colour11
+  export TMUX_BORDER_FG_ACTIVE=colour42
   export TMUX_BORDER_FG=colour240
   export BACKGROUND='dark'
   export THEME_CHANGED=1
@@ -129,3 +131,8 @@ function csview() {
 
 export NVM_DIR="/Users/bez/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+# Automatically added by Platform.sh CLI installer
+export PATH="/Users/bez/.platformsh/bin:$PATH"
+. '/Users/bez/.platformsh/shell-config.rc' 2>/dev/null
