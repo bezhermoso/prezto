@@ -33,12 +33,6 @@ fi
 # Paths
 #
 
-# rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
 export PATH="$HOME/Library/Python/3.5/bin:$PATH"
 
 # Drupal Console
@@ -96,3 +90,7 @@ fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
 
+
+# rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
