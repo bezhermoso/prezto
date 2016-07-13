@@ -12,7 +12,9 @@ fi
 
 export ZPLUG_HOME=/usr/local/opt/zplug
 [ -f $ZPLUG_HOME/init.zsh ] && source $ZPLUG_HOME/init.zsh || :
-#zplug load --verbose
+zplug 'unixorn/tumult.plugin.zsh'
+zplug 'Tarrasch/zsh-bd'
+zplug load
 
 # Customize to your needs...
 
