@@ -10,6 +10,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+export ZPLUG_HOME=/usr/local/opt/zplug
+[ -f $ZPLUG_HOME/init.zsh ] && source $ZPLUG_HOME/init.zsh || :
+#zplug load --verbose
+
 # Customize to your needs...
 
 setopt NO_CLOBBER
