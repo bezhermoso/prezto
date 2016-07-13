@@ -26,6 +26,17 @@ setopt RM_STAR_WAIT
 # Show trailing slash on directories on `ls`
 alias ls="ls -GF"
 bindkey "^r" history-incremental-search-backward
+
+autoload -Uz surround
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+bindkey -a cs change-surround
+bindkey -a ds delete-surround
+bindkey -a ys add-surround
+bindkey -M visual S add-surround
+KEYTIMEOUT=1
+
 tmux-register-lang-versions
 
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -50,6 +61,7 @@ function dark() {
   export TMUX_BORDER_FG=colour240
   export BACKGROUND='dark'
   export THEME_CHANGED=1
+  export TMUX_BG="black"
 }
 
 function light() {
@@ -61,6 +73,7 @@ function light() {
   export TMUX_BORDER_FG=colour248
   export BACKGROUND="light"
   export THEME_CHANGED=1
+  export TMUX_BG="white"
 }
 
 if [[ -z "$THEME_CHANGED" ]]; then
@@ -136,3 +149,21 @@ export NVM_DIR="/Users/bez/.nvm"
 # Automatically added by Platform.sh CLI installer
 export PATH="/Users/bez/.platformsh/bin:$PATH"
 . '/Users/bez/.platformsh/shell-config.rc' 2>/dev/null
+
+alias a='fasd -a'        # any
+alias s='fasd -si'       # show / search / select
+alias d='fasd -d'        # directory
+alias f='fasd -f'        # file
+alias sd='fasd -sid'     # interactive directory selection
+alias sf='fasd -sif'     # interactive file selection
+alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+alias zz='fasd_cd -d -i' # cd with interactive selection
+
+gitroot() {
+  while [ ! -d .git ]
+  do
+    cd ..
+  done
+}
+
+alias gr='gitroot'
