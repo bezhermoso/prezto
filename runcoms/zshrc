@@ -16,6 +16,8 @@ export ZPLUG_HOME=/usr/local/opt/zplug
 zplug 'Tarrasch/zsh-bd'
 zplug load
 
+export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
+
 # Will have to redefine $EDITOR because `tumult` might have overwritten it.
 # export EDITOR=nvim
 
