@@ -95,3 +95,6 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
+if [[ -n "$(vagrant -v | grep '\.dev$')" ]]; then
+  export VAGRANT_I_KNOW_WHAT_IM_DOING_PLEASE_BE_QUIET=true
+fi
