@@ -179,3 +179,6 @@ gitroot() {
 
 alias gr='gitroot'
 
+start-copy-server() {
+  while true; do nc -l 4737 | pbcopy; done 2>&1 &
+}
