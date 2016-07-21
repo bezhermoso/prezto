@@ -16,7 +16,7 @@ export ZPLUG_HOME=/usr/local/opt/zplug
 zplug 'Tarrasch/zsh-bd'
 zplug load
 
-export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
+export FZF_DEFAULT_COMMAND="ag --hidden --skip-vcs-ignores --ignore .git -f -g \"\""
 
 # Will have to redefine $EDITOR because `tumult` might have overwritten it.
 # export EDITOR=nvim
@@ -54,13 +54,8 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 export TMUX_CONFIG_DIR="$HOME/.dotfiles/tmux"
 
-
-function powerline_lib_path() {
-  pip show powerline-status | grep Location | awk '{print $2}'
-}
-
 function src() {
-  source $HOME/.zprofile
+  source $HOME/.dotfiles/zsh/.zprofile
 }
 
 function dark() {
@@ -91,7 +86,7 @@ if [[ -z "$THEME_CHANGED" ]]; then
   dark bright
 fi
 
-export POWERLINE_PATH=$(powerline_lib_path)/powerline
+#export POWERLINE_PATH=$(powerline_lib_path)/powerline
 export HISTINGORE='clear:history'
 export HISTORYCONTROL='ignoreboth'
 
@@ -101,7 +96,6 @@ export VIM_COLOR="base16-${BASE16_FLAVOR}"
 export BACKGROUND=${BACKGROUND:-"dark"}
 
 BASE16_SHELL="$HOME/TerminalMods/base16-shell/base16-${BASE16_FLAVOR}.${BACKGROUND}.sh"
-
 export THEME_CHANGED=0
 
 # Avoid flickering in tmux
@@ -121,7 +115,7 @@ alias hacksh='$SHELL | tr -u eauiobBgGsSlL 34U1088995577'
 alias reinit-markers='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -seed'
 
 # Drupal Console
-source "$HOME/.console/console.rc" 2>/dev/null
+#source "$HOME/.console/console.rc" 2>/dev/null
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export HOMEBREW_GITHUB_API_TOKEN=182130e66d4c5dfed0395ffd2509c601d74400af
@@ -130,7 +124,6 @@ alias vim=nvim
 alias vi=nvim
 alias quit=exit
 alias mux=tmuxinator
-
 
 # tmux variables
 #export TMUX_BORDER_FG=colour255
@@ -157,9 +150,11 @@ export NVM_DIR="/Users/bez/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 
-# Automatically added by Platform.sh CLI installer
-export PATH="/Users/bez/.platformsh/bin:$PATH"
-. '/Users/bez/.platformsh/shell-config.rc' 2>/dev/null
+function load-platformsh() {
+  # Automatically added by Platform.sh CLI installer
+  export PATH="/Users/bez/.platformsh/bin:$PATH"
+  . '/Users/bez/.platformsh/shell-config.rc' 2>/dev/null
+}
 
 alias a='fasd -a'        # any
 alias s='fasd -si'       # show / search / select
