@@ -122,7 +122,7 @@ function prompt_bezorin_setup {
   zstyle ':prezto:module:editor:info:keymap:primary' format ' %F{3}⇒%f '
   zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format ' %F{3}♺%f'
   #zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%F{2}❮%F{3}❮%F{1}❮%f%b'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format ' %F{4}vi-mode%f %F{3}⇒%f '
+  zstyle ':prezto:module:editor:info:keymap:alternate' format ' %F{4}ⅵ%f '
 
   # Set git-info parameters.
   zstyle ':prezto:module:git:info' verbose 'yes'
