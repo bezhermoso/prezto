@@ -10,11 +10,11 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-export ZPLUG_HOME=/usr/local/opt/zplug
-[ -f $ZPLUG_HOME/init.zsh ] && source $ZPLUG_HOME/init.zsh || :
-#zplug 'unixorn/tumult.plugin.zsh'
-zplug 'Tarrasch/zsh-bd'
-zplug load
+#export ZPLUG_HOME=/usr/local/opt/zplug
+#[ -f $ZPLUG_HOME/init.zsh ] && source $ZPLUG_HOME/init.zsh || :
+##zplug 'unixorn/tumult.plugin.zsh'
+#zplug 'Tarrasch/zsh-bd'
+#zplug load
 
 export FZF_DEFAULT_COMMAND="ag --hidden --skip-vcs-ignores --ignore .git -f -g \"\""
 
