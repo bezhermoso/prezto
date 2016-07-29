@@ -119,10 +119,10 @@ function prompt_bezorin_setup {
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{7}...%f%b'
   # zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{1}❯%F{3}❯%F{2}❯%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format ' %F{3}⇒%f '
+  zstyle ':prezto:module:editor:info:keymap:primary' format ' %F{3}›%f'
   zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format ' %F{3}♺%f'
   #zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%F{2}❮%F{3}❮%F{1}❮%f%b'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format ' %F{4}ⅵ%f '
+  zstyle ':prezto:module:editor:info:keymap:alternate' format ' %F{4}ⅵ%f'
 
   # Set git-info parameters.
   zstyle ':prezto:module:git:info' verbose 'yes'
@@ -147,6 +147,7 @@ function prompt_bezorin_setup {
   #PROMPT=$'\n%F{12}%B%n%b%f%F{12}@%m%f in ${_prompt_bezorin_pwd}%(?:: %F{1}< %U$?%u >%f)${git_info:+\n${(e)git_info[status]}}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]}$(tmux-register-lang-versions &>/dev/null &) '
   RPROMPT=''
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
+  PS2=' %F{242}›%f   '
 }
 
 function prompt_bezorin_preview {
