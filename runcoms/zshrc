@@ -52,11 +52,15 @@ tmux-register-lang-versions
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+export TERM='xterm-256color'
 export TMUX_CONFIG_DIR="$HOME/.dotfiles/tmux"
 
 function src() {
   source $HOME/.dotfiles/zsh/.zprofile
 }
+
+#BASE16_SHELL=$HOME/.dotfiles/base16-shell/
+#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 function dark() {
   if [[ "$1" != "" ]]; then
@@ -90,18 +94,25 @@ fi
 export HISTINGORE='clear:history'
 export HISTORYCONTROL='ignoreboth'
 
+
 # base16-shell
 export BASE16_FLAVOR=${BASE16_FLAVOR:-"bright"}
 export VIM_COLOR="base16-${BASE16_FLAVOR}"
 export BACKGROUND=${BACKGROUND:-"dark"}
-
-BASE16_SHELL="$HOME/TerminalMods/base16-shell/base16-${BASE16_FLAVOR}.${BACKGROUND}.sh"
-export THEME_CHANGED=0
-
-# Avoid flickering in tmux
-if [[ -z "$TMUX" ]]; then
-  [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+#
+#base16_$BASE16_FLAVOR
+source $HOME/.dotfiles/zsh/colorscheme.zsh
+if [ -z "$TMUX_PANE" ]; then
+  base16 materia
 fi
+
+#BASE16_SHELL_VARIANT="$HOME/.dotfiles/base16-shell/base16-${BASE16_FLAVOR}.${BACKGROUND}.sh"
+#export THEME_CHANGED=0
+#
+## Avoid flickering in tmux
+#if [[ -z "$TMUX" ]]; then
+#  [[ -s $BASE16_SHELL_VARIANT ]] && source $BASE16_SHELL_VARIANT
+#fi
 
 export ANSIBLE_NOCOWS=1
 
@@ -131,6 +142,7 @@ alias mux=tmuxinator
 #export TMUX_BORDER_BG_ACTIVE=colour236
 
 alias ydl="youtube-dl"
+nvimdiff="nvim -d"
 
 # Open `HUD` tmux session when invoking the HUD terminal in iTerm via the
 # global hotkey. Create the session if it isn't there yet.
@@ -177,3 +189,10 @@ alias gr='gitroot'
 start-copy-server() {
   while true; do nc -l 4737 | pbcopy; done 2>&1 &
 }
+
+# http://stackoverflow.com/a/10744524/908451
+function git-show-orig {
+    git status -su | grep -e"\.orig$" | cut -f2 -d" "
+}
+
+
