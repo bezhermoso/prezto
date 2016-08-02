@@ -35,7 +35,7 @@ pmodload 'helper'
 
 function prompt_bezorin_pwd {
 
-  _prompt_bezorin_pwd="%F{242}%~%f"
+  _prompt_bezorin_pwd="%F{8}%~%f"
   #if [[ "$PWD" == "$HOME" ]]; then
     #_prompt_bezorin_pwd="%F{3}~%f"
   #else
@@ -130,7 +130,7 @@ function prompt_bezorin_setup {
   zstyle ':prezto:module:git:info:added' format ' %%B%F{2}+%f%%b'
   zstyle ':prezto:module:git:info:ahead' format ' %%B%F{13}▲%f%%b'
   zstyle ':prezto:module:git:info:behind' format ' %%B%F{13}▼%f%%b'
-  zstyle ':prezto:module:git:info:branch' format ' %%F{41}%b%f%'
+  zstyle ':prezto:module:git:info:branch' format ' %%F{2}%b%f%'
   zstyle ':prezto:module:git:info:commit' format ' %%B%F{3}%.7c%f%%b'
   zstyle ':prezto:module:git:info:deleted' format ' %%B%F{1}-%f%%b'
   zstyle ':prezto:module:git:info:modified' format ' %%B%F{3}±%f%%b'
