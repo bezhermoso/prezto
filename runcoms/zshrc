@@ -17,6 +17,13 @@ fi
 #zplug load
 
 export FZF_DEFAULT_COMMAND="ag --hidden --skip-vcs-ignores --ignore .git -f -g \"\""
+export FZF_DEFAULT_OPTS='
+  --color=fg:7,bg:0,hl:1,bg+:0,fg+:3,hl+:1,info:3,prompt:5,pointer:1,marker:3,spinner:3,header:8
+  --tiebreak=end --no-mouse --margin=0,0,0,1
+  --prompt="› "
+  --tabstop=2
+  -1
+'
 
 # Will have to redefine $EDITOR because `tumult` might have overwritten it.
 # export EDITOR=nvim
