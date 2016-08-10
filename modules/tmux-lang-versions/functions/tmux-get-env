@@ -1,3 +1,4 @@
+# vi:syntax=zsh
 
 local env_var="$1"
 
