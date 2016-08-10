@@ -19,5 +19,8 @@
 
 cat <<-EOF
 
-$(cowsay "Au revoir!")
+  --------------
+  | AU REVOIR! |
+  --------------
+
 EOF
