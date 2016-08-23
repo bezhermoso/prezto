@@ -56,9 +56,10 @@ bindkey -a ys add-surround
 bindkey -M visual S add-surround
 KEYTIMEOUT=1
 
-tmux-register-lang-versions
 
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=($HOME/.dotfiles/zsh/functions /usr/local/share/zsh-completions $fpath)
+
+tmux-register-lang-versions
 
 export TERM='xterm-256color'
 export TMUX_CONFIG_DIR="$HOME/.dotfiles/tmux"
