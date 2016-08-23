@@ -10,7 +10,8 @@ local tmux_env_val=$(tmux show-environment | grep $tmux_env_var)
 
 if [[ -n $tmux_env_val ]]; then
   eval $tmux_env_val
-  eval echo \$$tmux_env_var
+  # Variable indirection in zsh: http://unix.stackexchange.com/a/251896/176506
+  print -rl -- ${(P)tmux_env_var}
 else
   echo ''
 fi
