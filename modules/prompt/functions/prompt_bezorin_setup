@@ -33,6 +33,7 @@
 # Load dependencies.
 pmodload 'helper'
 
+
 function prompt_bezorin_pwd {
 
   _prompt_bezorin_pwd="%F{8}%~%f"
@@ -69,6 +70,44 @@ function prompt_bezorin_git_info {
   fi
 }
 
+#function git-remote-origin {
+
+  #local remote_info_formatted
+  #local remote_host
+  #local remote_owner
+  #local remote_protocol
+  #local remote_repo
+  #local remote_info_format
+
+  #{
+    #node <<GIT_INFO
+      #try {
+        #var parse = require('git-url-parse');
+        #var info = parse("${}")
+      #} catch (e) {
+        #console.log('INSTALL');
+        #exit 0;
+      #}
+    #GIT_INFO
+  #} | read output
+
+  #zstyle -s ':bezorin:git-remote-info' format 'remote_info_format'
+  #zformat -f remote_info_formatted "$remote_info_format" \
+    #"h:$remote_host" \
+    #"o:$remote_owner" \
+    #"p:$remote_protocol" \
+    #"r:$remote_repo"
+
+  #echo $remote_info_formatted
+
+  #if (( $+commands[git] )); then
+    #remote=$(git remote get-url origin)
+    #echo $remote
+  #else
+    #echo ''
+  #fi
+#}
+
 function prompt_bezorin_precmd_async {
   # Get Git repository information.
   if (( $+functions[git-info] )); then
@@ -85,6 +124,7 @@ function prompt_bezorin_precmd {
   unsetopt XTRACE KSH_ARRAYS
 
   unset git_info
+  unset git_remote
   # Format PWD.
   prompt_bezorin_pwd
 
