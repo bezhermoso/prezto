@@ -38,8 +38,6 @@ export PATH="$HOME/Library/Python/3.5/bin:$PATH"
 # Drupal Console
 export PATH="/Projects/Personal/DrupalConsole/bin:$PATH"
 
-# custom executables
-export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$PATH"
 
 # phpbrew
 [[ -s "${HOME}/.phpbrew/bashrc" ]] && source "$HOME/.phpbrew/bashrc"
@@ -100,5 +98,10 @@ if (( $+commands[pyenv] )); then
   eval "$(pyenv init -)"
 fi
 
-export VAGRANT_I_KNOW_WHAT_IM_DOING_PLEASE_BE_QUIET=true
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+# custom executables
+export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$PATH"
+
+export VAGRANT_I_KNOW_WHAT_IM_DOING_PLEASE_BE_QUIET=true
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
