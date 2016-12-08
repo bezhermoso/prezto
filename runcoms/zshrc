@@ -1,3 +1,4 @@
+# -*- mode: sh -*-
 #
 # Executes commands at the start of an interactive session.
 #
@@ -17,7 +18,7 @@ fi
 #zplug load
 
 export GREP_COLOR='1;37;41'
-export FZF_DEFAULT_COMMAND="ag --hidden --skip-vcs-ignores --ignore .git -f -g \"\""
+export FZF_DEFAULT_COMMAND="ag --hidden --skip-vcs-ignores --ignore .git --ignore /keybase -f -g \"\""
 export FZF_DEFAULT_OPTS='
   --color=fg:7,bg:0,hl:1,bg+:18,fg+:5,hl+:1,info:8,prompt:5,pointer:2,marker:6,spinner:3,header:8
   --no-mouse --margin=0,0,0,1
@@ -140,8 +141,8 @@ alias reinit-markers='/System/Library/Frameworks/CoreServices.framework/Versions
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export HOMEBREW_GITHUB_API_TOKEN=182130e66d4c5dfed0395ffd2509c601d74400af
 
-alias vim=nvim
-alias vi=nvim
+alias vim="nvim"
+alias vi="vim"
 alias quit=exit
 alias mux=tmuxinator
 
@@ -253,4 +254,8 @@ function dockercleanup()
 
   echo 'Deleting all volumes...'
   docker volume rm $(docker volume ls -qf dangling=true)
+}
+
+function qapp() {
+  echo "'quit app \"$@\"'" | xargs osascript -e
 }
