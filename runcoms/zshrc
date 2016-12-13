@@ -11,6 +11,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+export TERM=xterm-256color
+
 #export ZPLUG_HOME=/usr/local/opt/zplug
 #[ -f $ZPLUG_HOME/init.zsh ] && source $ZPLUG_HOME/init.zsh || :
 ##zplug 'unixorn/tumult.plugin.zsh'
@@ -19,8 +21,7 @@ fi
 
 export GREP_COLOR='1;37;41'
 export FZF_DEFAULT_COMMAND="ag --hidden --skip-vcs-ignores --ignore .git --ignore /keybase -f -g \"\""
-export FZF_DEFAULT_OPTS='
-  --color=fg:7,bg:0,hl:1,bg+:18,fg+:5,hl+:1,info:8,prompt:5,pointer:2,marker:6,spinner:3,header:8
+export FZF_DEFAULT_OPTS=' --color=fg:7,bg:0,hl:1,bg+:18,fg+:5,hl+:1,info:8,prompt:5,pointer:2,marker:6,spinner:3,header:8
   --no-mouse --margin=0,0,0,1
   --prompt="› "
   --tabstop=2
@@ -141,6 +142,7 @@ alias reinit-markers='/System/Library/Frameworks/CoreServices.framework/Versions
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export HOMEBREW_GITHUB_API_TOKEN=182130e66d4c5dfed0395ffd2509c601d74400af
 
+alias mcs='emacsclient -t -a ""'
 alias vim="nvim"
 alias vi="vim"
 alias quit=exit
@@ -162,14 +164,8 @@ fi
 
 alias color-table="vim +XtermColorTable +only"
 
-function csview() {
-  cat "$1" | column -s, -t | less -#5 -SN 
-}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export NVM_DIR="/Users/bez/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 
 function load-platformsh() {
@@ -187,22 +183,9 @@ alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
 
-gitroot() {
-  while [ ! -d .git ]
-  do
-    cd ..
-  done
-}
-
-alias gr='gitroot'
 
 start-copy-server() {
   while true; do nc -l 4737 | pbcopy; done 2>&1 &
-}
-
-# http://stackoverflow.com/a/10744524/908451
-function git-show-orig {
-    git status -su | grep -e"\.orig$" | cut -f2 -d" "
 }
 
 # Inspired by:
@@ -259,3 +242,5 @@ function dockercleanup()
 function qapp() {
   echo "'quit app \"$@\"'" | xargs osascript -e
 }
+
+
