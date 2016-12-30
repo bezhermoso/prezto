@@ -158,6 +158,9 @@ alias mux=tmuxinator
 alias ydl="youtube-dl"
 nvimdiff="nvim -d"
 
+export GPG_TTY=$(tty)
+export PINENTRY_USER_DATA="USE_CURSES=1"
+
 # Open `HUD` tmux session when invoking the HUD terminal in iTerm via the
 # global hotkey. Create the session if it isn't there yet.
 if [[ -z "$TMUX_PANE" && "$ITERM_PROFILE" == "Hotkey Window" ]]; then
