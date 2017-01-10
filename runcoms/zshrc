@@ -13,8 +13,6 @@ fi
 
 export TERM=xterm-256color
 
-ssh-add -A &> /dev/null
-
 #export ZPLUG_HOME=/usr/local/opt/zplug
 #[ -f $ZPLUG_HOME/init.zsh ] && source $ZPLUG_HOME/init.zsh || :
 ##zplug 'unixorn/tumult.plugin.zsh'
