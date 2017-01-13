@@ -181,7 +181,7 @@ function prompt_bezorin_setup {
   zstyle ':prezto:module:git:info:unmerged' format ' %%B%F{1}!%f%%b'
   zstyle ':prezto:module:git:info:untracked' format ' %%B?%%b'
   zstyle ':prezto:module:git:info:keys' format \
-    'status' '%F{245}[%f$(coalesce "%b" "%c"):%s%A%B%S%a%d%m%r%U%u %F{245}]%f '
+    'status' '%F{245}[%f $(coalesce "%b" "%c"):%s%A%B%S%a%d%m%r%U%u %F{245}]%f '
 
   # Define prompts.
   PROMPT=$'\n${git_info:+${(e)git_info[status]}}${_prompt_bezorin_pwd}%(?:: %F{1}< %U$?%u >%f)\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
