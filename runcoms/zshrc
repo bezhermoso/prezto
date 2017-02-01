@@ -19,6 +19,10 @@ export TERM=xterm-256color
 #zplug 'Tarrasch/zsh-bd'
 #zplug load
 
+# Enable bash completion support (eg. tmuxp)
+#autoload bashcompinit
+#bashcompinit
+
 export GREP_COLOR='1;37;41'
 export FZF_DEFAULT_COMMAND="ag --hidden --skip-vcs-ignores --ignore .git --ignore /keybase -f -g \"\""
 export FZF_DEFAULT_OPTS=' --color=fg:7,bg:0,hl:1,bg+:18,fg+:5,hl+:1,info:8,prompt:5,pointer:2,marker:6,spinner:3,header:8
@@ -246,4 +250,14 @@ function qapp() {
   echo "'quit app \"$@\"'" | xargs osascript -e
 }
 
+function tmuxp() {
+  local _command=$@
+  if [[ $1 == 'load' ]]
+  then
+    _command="$_command --yes"
+  fi
 
+  eval "command tmuxp $_command"
+}
+
+compinit -U tmuxp
