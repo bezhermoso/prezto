@@ -117,6 +117,7 @@ export BACKGROUND=${BACKGROUND:-"dark"}
 #
 #base16_$BASE16_FLAVOR
 source $HOME/.dotfiles/zsh/colorscheme.zsh
+
 if [ -z "$TMUX_PANE" ]; then
   base16 materia
 fi
@@ -230,21 +231,6 @@ if (( $+commands[highlight] )); then
   # Use "highlight" in place of "cat"
   #alias cat="highlight $1 --out-format xterm256 --line-numbers --quiet --force --style base16"
 fi
-
-function dockercleanup()
-{
-  echo 'Killing running containers...'
-  docker kill $(docker ps -q)
-
-  echo 'Deleting containers...'
-  docker rm $(docker ps -a -q)
-
-  echo 'Deleting all images...'
-  docker rmi $(docker images -q)
-
-  echo 'Deleting all volumes...'
-  docker volume rm $(docker volume ls -qf dangling=true)
-}
 
 function qapp() {
   echo "'quit app \"$@\"'" | xargs osascript -e
