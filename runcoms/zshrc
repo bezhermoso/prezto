@@ -118,7 +118,7 @@ export BACKGROUND=${BACKGROUND:-"dark"}
 #base16_$BASE16_FLAVOR
 source $HOME/.dotfiles/zsh/colorscheme.zsh
 
-if [ -z "$TMUX_PANE" ]; then
+if [[ -z "$TMUX_PANE" && -z "$EMACS" ]]; then
   base16 materia
 fi
 
