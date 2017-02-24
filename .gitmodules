@@ -28,3 +28,6 @@
 [submodule "modules/zsh-notify/external"]
 	path = modules/zsh-notify/external
 	url = https://github.com/marzocchi/zsh-notify.git
+[submodule "modules/escape-backtick/external"]
+	path = modules/escape-backtick/external
+	url = https://github.com/bezhermoso/zsh-escape-backtick.git
