@@ -211,26 +211,27 @@ man() {
 
 export GPG_TTY=$(tty)
 
-# `less` with syntax-highlighting using `source-highlight`
-# https://gist.github.com/textarcana/4611277
-#if (( $+commands[source-highlight] )); then
-  #export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s" 
-  #export LESS=" -R "
-  #alias less='less -m -N -g -i -J --underline-special --SILENT'
-  #alias more='less'
-#fi
-#
-# `less` with syntax-highlighting using `highlight`
-# https://gist.github.com/textarcana/4611277#gistcomment-1701305
-if (( $+commands[highlight] )); then
+if (( $+commands[pygmentize] )); then
+  export LESSOPEN="| pygmentize %s 2>/dev/null"
+elif (( $+commands[highlight] )); then
+  # `less` with syntax-highlighting using `source-highlight`
+  # https://gist.github.com/textarcana/4611277
+  #if (( $+commands[source-highlight] )); then
+    #export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s" 
+    #export LESS=" -R "
+    #alias less='less -m -N -g -i -J --underline-special --SILENT'
+    #alias more='less'
+  #fi
+  #
+  # `less` with syntax-highlighting using `highlight`
+  # https://gist.github.com/textarcana/4611277#gistcomment-1701305
   export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style base16"
-  export LESS=" -R"
-  alias less='less -m -N -g -i -J --line-numbers --underline-special'
-  alias more='less'
-
   # Use "highlight" in place of "cat"
   #alias cat="highlight $1 --out-format xterm256 --line-numbers --quiet --force --style base16"
 fi
+export LESS=" -R"
+alias less='less -m -N -g -i -J --line-numbers --underline-special'
+alias more='less'
 
 function qapp() {
   echo "'quit app \"$@\"'" | xargs osascript -e
