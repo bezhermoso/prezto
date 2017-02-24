@@ -37,6 +37,7 @@ zstyle ':prezto:load' pmodule \
   'osx' \
   'tmux-lang-versions' \
   'syntax-highlighting' \
+  'escape-backtick' \
   'prompt'
 
 # `directory` options

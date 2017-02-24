@@ -30,4 +30,4 @@
 	url = https://github.com/marzocchi/zsh-notify.git
 [submodule "modules/escape-backtick/external"]
 	path = modules/escape-backtick/external
-	url = https://github.com/bezhermoso/zsh-escape-backtick.git
+	url = git@github.com:bezhermoso/zsh-escape-backtick.git
