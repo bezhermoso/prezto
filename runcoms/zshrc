@@ -246,4 +246,31 @@ function tmuxp() {
   eval "command tmuxp $_command"
 }
 
+gitroot() {
+  while [ ! -d .git ]
+  do
+    cd ..
+  done
+}
+
+alias gr='gitroot'
+function csview() {
+  cat "$1" | column -s, -t | less -#5 -SN 
+}
+
+
+# http://stackoverflow.com/a/10744524/908451
+function git-show-orig {
+    git status -su | grep -e"\.orig$" | cut -f2 -d" "
+}
+
+rifle() {
+  /usr/local/opt/ranger/libexec/ranger/ext/rifle.py "$@"
+}
+
+
+export NVM_DIR="/Users/bez/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 compinit -U tmuxp
+

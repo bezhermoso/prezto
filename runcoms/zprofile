@@ -108,22 +108,3 @@ export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$PATH"
 export VAGRANT_I_KNOW_WHAT_IM_DOING_PLEASE_BE_QUIET=true
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-gitroot() {
-  while [ ! -d .git ]
-  do
-    cd ..
-  done
-}
-
-alias gr='gitroot'
-function csview() {
-  cat "$1" | column -s, -t | less -#5 -SN 
-}
-
-export NVM_DIR="/Users/bez/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# http://stackoverflow.com/a/10744524/908451
-function git-show-orig {
-    git status -su | grep -e"\.orig$" | cut -f2 -d" "
-}
