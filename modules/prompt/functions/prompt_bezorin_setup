@@ -33,23 +33,17 @@
 # Load dependencies.
 pmodload 'helper'
 
+_prompt_bezorin_pwd_toggle=0
 
 function prompt_bezorin_pwd {
-
-  _prompt_bezorin_pwd="%F{8}%~%f"
-  #if [[ "$PWD" == "$HOME" ]]; then
-    #_prompt_bezorin_pwd="%F{3}~%f"
-  #else
-    #_tilded_pwd="${PWD/#$HOME/~}"
-    #_head_pwd="${_tilded_pwd:h}"
-    #_tail_pwd="${_tilded_pwd:t}"
-
-    #if [[ "$_head_pwd" == "/" ]]; then
-      #_prompt_bezorin_pwd="%F{3}/${_tail_pwd}%f"
-    #else
-      #_prompt_bezorin_pwd="%F{3}${_head_pwd}/${_tail_pwd}%f"
-    #fi
-  #fi
+  local pwd="${PWD/#$HOME/~}"
+  local dirs=("${(s#/#)pwd}")
+  if [[ _prompt_bezorin_pwd_toggle -eq 0 && ${#dirs} -gt 4 ]]; then
+    dirs=($(print -l ${dirs[-3,-1]}))
+    _prompt_bezorin_pwd="%F{8}.../${(j#/#)dirs}%f"
+  else
+    _prompt_bezorin_pwd="%F{8}%~%f"
+  fi
 }
 
 function prompt_bezorin_git_info {
@@ -70,43 +64,17 @@ function prompt_bezorin_git_info {
   fi
 }
 
-#function git-remote-origin {
+function prompt_bezorin_toggle_pwd {
+  if [[ _prompt_bezorin_pwd_toggle -eq 1 ]]; then
+    _prompt_bezorin_pwd_toggle=0
+  else
+    _prompt_bezorin_pwd_toggle=1 
+  fi
+  prompt_bezorin_pwd
+  zle && zle reset-prompt
+}
 
-  #local remote_info_formatted
-  #local remote_host
-  #local remote_owner
-  #local remote_protocol
-  #local remote_repo
-  #local remote_info_format
-
-  #{
-    #node <<GIT_INFO
-      #try {
-        #var parse = require('git-url-parse');
-        #var info = parse("${}")
-      #} catch (e) {
-        #console.log('INSTALL');
-        #exit 0;
-      #}
-    #GIT_INFO
-  #} | read output
-
-  #zstyle -s ':bezorin:git-remote-info' format 'remote_info_format'
-  #zformat -f remote_info_formatted "$remote_info_format" \
-    #"h:$remote_host" \
-    #"o:$remote_owner" \
-    #"p:$remote_protocol" \
-    #"r:$remote_repo"
-
-  #echo $remote_info_formatted
-
-  #if (( $+commands[git] )); then
-    #remote=$(git remote get-url origin)
-    #echo $remote
-  #else
-    #echo ''
-  #fi
-#}
+zle -N prompt_bezorin_toggle_pwd
 
 function prompt_bezorin_precmd_async {
   # Get Git repository information.
@@ -131,7 +99,7 @@ function prompt_bezorin_precmd {
   # Define prompts.
   RPROMPT='${editor_info[overwrite]}${VIM:+" %B%F{6}V%f%b"}'
   
-  (tmux-register-lang-versions &>/dev/null &)
+  #(tmux-register-lang-versions &>/dev/null &)
 
   # Kill the old process of slow commands if it is still running.
   if (( _prompt_bezorin_precmd_async_pid > 0 )); then
@@ -156,6 +124,9 @@ function prompt_bezorin_setup {
 
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_bezorin_precmd
+
+  bindkey '^j' prompt_bezorin_toggle_pwd
+
 
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{7}...%f%b'
