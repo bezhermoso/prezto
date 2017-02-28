@@ -125,7 +125,7 @@ function prompt_bezorin_setup {
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_bezorin_precmd
 
-  bindkey '^j' prompt_bezorin_toggle_pwd
+  bindkey '^f' prompt_bezorin_toggle_pwd
 
 
   # Set editor-info parameters.
@@ -146,9 +146,9 @@ function prompt_bezorin_setup {
   zstyle ':prezto:module:git:info:commit' format ' %%B%F{3}%.7c%f%%b'
   zstyle ':prezto:module:git:info:deleted' format ' %%B%F{1}-%f%%b'
   zstyle ':prezto:module:git:info:modified' format ' %%B%F{3}±%f%%b'
-  zstyle ':prezto:module:git:info:position' format '%%B%F{13}%p%f%%b'
+  zstyle ':prezto:module:git:info:position' format '%F{7}:%f%%B%F{13}%p%f%%b'
   zstyle ':prezto:module:git:info:renamed' format ' %%B%F{5}→%f%%b'
-  zstyle ':prezto:module:git:info:stashed' format ' %%B%F{6}□%f%%b'
+  zstyle ':prezto:module:git:info:stashed' format ' %%B%F{6}▣%f%%b'
   zstyle ':prezto:module:git:info:unmerged' format ' %%B%F{1}!%f%%b'
   zstyle ':prezto:module:git:info:untracked' format ' %%B?%%b'
   zstyle ':prezto:module:git:info:keys' format \
