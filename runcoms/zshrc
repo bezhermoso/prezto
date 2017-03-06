@@ -288,3 +288,7 @@ export NVM_DIR="/Users/bez/.nvm"
 
 compinit -U tmuxp
 
+if [[ -n $TMUX_PANE ]] && [[ -n $PYENV_VERSION ]]; then
+  PYENV_VERSION=
+fi
+
