@@ -94,7 +94,6 @@ function dark() {
   if [[ "$1" != "" ]]; then
     export BASE16_FLAVOR="$1"
   fi
-  export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=default
   export TMUX_BORDER_FG_ACTIVE=colour42
   export TMUX_BORDER_FG=colour240
   export BACKGROUND='dark'
@@ -106,7 +105,6 @@ function light() {
   if [[ "$1" != "" ]]; then
     export BASE16_FLAVOR="$1"
   fi
-  export POWERLINE_CONFIG_OVERRIDES=ext.tmux.colorscheme=light
   export TMUX_BORDER_FG_ACTIVE=colour1
   export TMUX_BORDER_FG=colour248
   export BACKGROUND="light"
@@ -135,21 +133,7 @@ if [[ -z "$TMUX_PANE" && -z "$EMACS" ]]; then
   base16 materia
 fi
 
-#BASE16_SHELL_VARIANT="$HOME/.dotfiles/base16-shell/base16-${BASE16_FLAVOR}.${BACKGROUND}.sh"
-#export THEME_CHANGED=0
-#
-## Avoid flickering in tmux
-#if [[ -z "$TMUX" ]]; then
-#  [[ -s $BASE16_SHELL_VARIANT ]] && source $BASE16_SHELL_VARIANT
-#fi
-
 export ANSIBLE_NOCOWS=1
-
-# tmuxinator
-#tmuxinator_version=$(gem list tmuxinator | grep tmuxinator | awk '{print $2}' | sed 's/(/-/' | sed 's/)//')
-#tmuxinator_dir=$(gem list tmuxinator -d | grep Installed | awk '{print $3}')
-#source $tmuxinator_dir/gems/tmuxinator$tmuxinator_version/completion/tmuxinator.zsh
-#type compdef
 
 alias hacksh='$SHELL | tr -u eauiobBgGsSlL 34U1088995577'
 alias reinit-markers='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -seed'
@@ -165,11 +149,6 @@ alias vim="nvim"
 alias vi="vim"
 alias quit=exit
 alias mux=tmuxinator
-
-# tmux variables
-#export TMUX_BORDER_FG=colour255
-#export TMUX_BORDER_BG=colour236
-#export TMUX_BORDER_BG_ACTIVE=colour236
 
 alias ydl="youtube-dl"
 nvimdiff="nvim -d"
