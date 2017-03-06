@@ -88,20 +88,6 @@ fi
 
 TMPPREFIX="$(mktemp -d)/zsh"
 
-
-# rbenv
-if (( $+commands[rbenv] )); then
-  eval "$(rbenv init -)"
-fi
-
-if (( $+commands[pyenv] )); then
-  eval "$(pyenv init -)"
-fi
-
-if (( $+commands[pyenv-virtualenv] )); then
-  eval "$(pyenv virtualenv-init -)"
-fi
-
 # custom executables
 export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$PATH"
 

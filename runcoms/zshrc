@@ -67,6 +67,19 @@ fpath=($HOME/.dotfiles/zsh/functions /usr/local/share/zsh-completions $fpath)
 
 tmux-register-lang-versions
 
+# rbenv
+if (( $+commands[rbenv] )); then
+  eval "$(rbenv init -)"
+fi
+
+if (( $+commands[pyenv] )); then
+  eval "$(pyenv init -)"
+fi
+
+if (( $+commands[pyenv-virtualenv] )); then
+  eval "$(pyenv virtualenv-init -)"
+fi
+
 export TERM='xterm-256color'
 export TMUX_CONFIG_DIR="$HOME/.dotfiles/tmux"
 
