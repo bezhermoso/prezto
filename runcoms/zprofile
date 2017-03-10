@@ -48,10 +48,6 @@ export PATH="/Projects/Personal/DrupalConsole/bin:$PATH"
 
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
-# nvm
-export NVM_DIR="/Users/bez/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
 

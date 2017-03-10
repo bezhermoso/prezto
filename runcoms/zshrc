@@ -261,9 +261,13 @@ rifle() {
   /usr/local/opt/ranger/libexec/ranger/ext/rifle.py "$@"
 }
 
-
-export NVM_DIR="/Users/bez/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+function nvm() {
+  if [[ -z $NVM_DIR ]]; then
+    export NVM_DIR="/Users/bez/.nvm"
+    source "$NVM_DIR/nvm.sh"
+    nvm $@
+  fi
+}
 
 compinit -U tmuxp
 
