@@ -78,6 +78,14 @@ if (( $+commands[pyenv-virtualenv] )); then
   eval "$(pyenv virtualenv-init -)"
 fi
 
+if (( $+commands[nodenv] )); then
+  eval "$(nodenv init -)"
+fi
+
+if [[ -f $HOME/.phpbrew/bashrc ]]; then
+  source $HOME/.phpbrew/bashrc
+fi
+
 export TERM='xterm-256color'
 export TMUX_CONFIG_DIR="$HOME/.dotfiles/tmux"
 
@@ -222,13 +230,13 @@ rifle() {
   /usr/local/opt/ranger/libexec/ranger/ext/rifle.py "$@"
 }
 
-function nvm() {
-  if [[ -z $NVM_DIR ]]; then
-    export NVM_DIR="/Users/bez/.nvm"
-    source "$NVM_DIR/nvm.sh"
-    nvm $@
-  fi
-}
+#function nvm() {
+  #if [[ -z $NVM_DIR ]]; then
+    #export NVM_DIR="/Users/bez/.nvm"
+    #source "$NVM_DIR/nvm.sh"
+    #nvm $@
+  #fi
+#}
 
 compinit -U tmuxp
 
