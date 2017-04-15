@@ -110,7 +110,7 @@ export BACKGROUND=${BACKGROUND:-"dark"}
 source $HOME/.dotfiles/zsh/colorscheme.zsh
 
 if [[ -z "$TMUX_PANE" && -z "$EMACS" ]]; then
-  base16 materia
+  base16 bright
 fi
 
 export ANSIBLE_NOCOWS=1
