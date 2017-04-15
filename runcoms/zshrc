@@ -209,10 +209,13 @@ function tmuxp() {
 }
 
 gitroot() {
+  local _pwd
+  _pwd="$(pwd)"
   while [ ! -d .git ]
   do
     cd ..
   done
+  OLDPWD=$_pwd
 }
 
 alias gr='gitroot'
