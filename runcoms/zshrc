@@ -247,3 +247,9 @@ if [[ -n $TMUX_PANE ]] && [[ -n $PYENV_VERSION ]]; then
   PYENV_VERSION=
 fi
 
+function clear() {
+  command clear
+  if [[ -n $TMUX_PANE ]]; then
+    tmux refresh-client
+  fi
+}
