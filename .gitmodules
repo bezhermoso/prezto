@@ -19,3 +19,15 @@
 [submodule "modules/prompt/functions/pure"]
 	path = modules/prompt/external/pure
 	url = https://github.com/sindresorhus/pure.git
+[submodule "modules/autoenv/external"]
+	path = modules/autoenv/external
+	url = https://github.com/horosgrisa/autoenv
+[submodule "modules/deer/external"]
+	path = modules/deer/external
+	url = https://github.com/Vifon/deer.git
+[submodule "modules/zsh-notify/external"]
+	path = modules/zsh-notify/external
+	url = https://github.com/marzocchi/zsh-notify.git
+[submodule "modules/escape-backtick/external"]
+	path = modules/escape-backtick/external
+	url = git@github.com:bezhermoso/zsh-escape-backtick.git
