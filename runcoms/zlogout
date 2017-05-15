@@ -5,9 +5,27 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# Execute code only if STDERR is bound to a TTY.
+[[ -o INTERACTIVE && -t 2 ]] && {
+
 # Print the message.
+
+# CLEARED_TMUX_ENV is there to prevent infinite recursion
+# Update: Safeguard still doesn't work :(
+
+#if [[ -n "$TMUX_PANE" && -z "$CLEARED_TMUX_ENV" ]]; then
+  #CLEARED_TMUX_ENV=1 $HOME/.dotfiles/tmux/unset-tmux-env.zsh TMUX_NODEJS_V
+  #CLEARED_TMUX_ENV=1 $HOME/.dotfiles/tmux/unset-tmux-env.zsh TMUX_RUBY_V
+  #CLEARED_TMUX_ENV=1 $HOME/.dotfiles/tmux/unset-tmux-env.zsh TMUX_PYTHON_V
+  #CLEARED_TMUX_ENV=1 $HOME/.dotfiles/tmux/unset-tmux-env.zsh TMUX_PHP_V
+#fi
+
 cat <<-EOF
 
-Thank you. Come again!
-  -- Dr. Apu Nahasapeemapetilon
+  --------------
+  | AU REVOIR! |
+  --------------
+
 EOF
+
+} >&2

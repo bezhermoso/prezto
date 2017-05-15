@@ -1,3 +1,4 @@
+# -*- mode: sh -*-
 #
 # Executes commands at the start of an interactive session.
 #
@@ -10,4 +11,245 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+export TERM=xterm-256color
+
+#export ZPLUG_HOME=/usr/local/opt/zplug
+#[ -f $ZPLUG_HOME/init.zsh ] && source $ZPLUG_HOME/init.zsh || :
+##zplug 'unixorn/tumult.plugin.zsh'
+#zplug 'Tarrasch/zsh-bd'
+#zplug load
+
+# Enable bash completion support (eg. tmuxp)
+#autoload bashcompinit
+#bashcompinit
+
+export GREP_COLOR='1;37;41'
+export FZF_DEFAULT_COMMAND="ag --hidden --skip-vcs-ignores --ignore .git --ignore /keybase -f -g \"\""
+export FZF_DEFAULT_OPTS=' --color=fg:7,bg:0,hl:1,bg+:18,fg+:5,hl+:1,info:8,prompt:5,pointer:2,marker:6,spinner:3,header:8
+  --no-mouse --margin=0,0,0,1
+  --prompt="› "
+  --tabstop=2
+  -1
+'
+
+# Will have to redefine $EDITOR because `tumult` might have overwritten it.
+# export EDITOR=nvim
+
 # Customize to your needs...
+
+setopt NO_CLOBBER
+#setopt AUTO_CD
+setopt MULTIOS
+setopt AUTO_PUSHD
+setopt GLOB_COMPLETE
+setopt PUSHD_MINUS
+#setopt PUSHD_SILENT
+setopt PUSHD_TO_HOME
+setopt PUSHD_IGNORE_DUPS
+setopt RM_STAR_WAIT
+
+# Show trailing slash on directories on `ls`
+alias ls="ls -GF"
+bindkey "^r" history-incremental-search-backward
+
+autoload -Uz surround
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+bindkey -a cs change-surround
+bindkey -a ds delete-surround
+bindkey -a ys add-surround
+bindkey -M visual S add-surround
+KEYTIMEOUT=1
+
+
+fpath=($HOME/.dotfiles/zsh/functions /usr/local/share/zsh-completions $fpath)
+
+# rbenv
+if (( $+commands[rbenv] )); then
+  eval "$(rbenv init -)"
+fi
+
+if (( $+commands[pyenv] )); then
+  eval "$(pyenv init -)"
+fi
+
+if (( $+commands[pyenv-virtualenv] )); then
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+if (( $+commands[nodenv] )); then
+  eval "$(nodenv init -)"
+fi
+
+if [[ -f $HOME/.phpbrew/bashrc ]]; then
+  source $HOME/.phpbrew/bashrc
+fi
+
+export TERM='xterm-256color'
+export TMUX_CONFIG_DIR="$HOME/.dotfiles/tmux"
+
+function src() {
+  source $HOME/.dotfiles/zsh/.zprofile
+}
+
+#BASE16_SHELL=$HOME/.dotfiles/base16-shell/
+#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+#export POWERLINE_PATH=$(powerline_lib_path)/powerline
+export HISTINGORE='clear:history'
+export HISTORYCONTROL='ignoreboth'
+
+
+# base16-shell
+export BASE16_FLAVOR=${BASE16_FLAVOR:-"bright"}
+export VIM_COLOR="base16-${BASE16_FLAVOR}"
+export BACKGROUND=${BACKGROUND:-"dark"}
+#
+#base16_$BASE16_FLAVOR
+source $HOME/.dotfiles/zsh/colorscheme.zsh
+
+if [[ -z "$TMUX_PANE" && -z "$EMACS" ]]; then
+  base16 spacemacs
+fi
+
+export ANSIBLE_NOCOWS=1
+
+alias hacksh='$SHELL | tr -u eauiobBgGsSlL 34U1088995577'
+alias reinit-markers='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -seed'
+
+# Drupal Console
+#source "$HOME/.console/console.rc" 2>/dev/null
+
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export HOMEBREW_GITHUB_API_TOKEN=182130e66d4c5dfed0395ffd2509c601d74400af
+
+alias mcs='emacsclient -t -a ""'
+alias vim="nvim"
+alias vi="vim"
+alias quit=exit
+
+alias ydl="youtube-dl"
+nvimdiff="nvim -d"
+
+export GPG_TTY=$(tty)
+export PINENTRY_USER_DATA="USE_CURSES=1"
+
+alias color-table="vim +XtermColorTable +only"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+function load-platformsh() {
+  # Automatically added by Platform.sh CLI installer
+  export PATH="/Users/bez/.platformsh/bin:$PATH"
+  . '/Users/bez/.platformsh/shell-config.rc' 2>/dev/null
+}
+
+alias a='fasd -a'        # any
+alias s='fasd -si'       # show / search / select
+alias d='fasd -d'        # directory
+alias f='fasd -f'        # file
+alias sd='fasd -sid'     # interactive directory selection
+alias sf='fasd -sif'     # interactive file selection
+alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+alias zz='fasd_cd -d -i' # cd with interactive selection
+
+
+start-copy-server() {
+  while true; do nc -l 4737 | pbcopy; done 2>&1 &
+}
+
+# Inspired by:
+# http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
+man() {
+	env \
+		LESS_TERMCAP_md=$'\e[1;36m' \
+		LESS_TERMCAP_me=$'\e[0m' \
+		LESS_TERMCAP_se=$'\e[0m' \
+		LESS_TERMCAP_so=$'\e[1;41;38;5;15m' \
+		LESS_TERMCAP_ue=$'\e[0m' \
+		LESS_TERMCAP_us=$'\e[1;32m' \
+			man "$@"
+}
+
+if (( $+commands[pygmentize] )); then
+  export LESSOPEN="| pygmentize %s 2>/dev/null"
+elif (( $+commands[highlight] )); then
+  # `less` with syntax-highlighting using `source-highlight`
+  # https://gist.github.com/textarcana/4611277
+  #if (( $+commands[source-highlight] )); then
+    #export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s" 
+    #export LESS=" -R "
+    #alias less='less -m -N -g -i -J --underline-special --SILENT'
+    #alias more='less'
+  #fi
+  #
+  # `less` with syntax-highlighting using `highlight`
+  # https://gist.github.com/textarcana/4611277#gistcomment-1701305
+  export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style base16"
+  # Use "highlight" in place of "cat"
+  #alias cat="highlight $1 --out-format xterm256 --line-numbers --quiet --force --style base16"
+fi
+export LESS=" -R"
+alias less='less -m -N -g -i -J --line-numbers --underline-special'
+alias more='less'
+
+function qapp() {
+  echo "'quit app \"$@\"'" | xargs osascript -e
+}
+
+function tmuxp() {
+  local _command=$@
+  if [[ $1 == 'load' ]]
+  then
+    _command="$_command --yes"
+  fi
+
+  eval "command tmuxp $_command"
+}
+
+gitroot() {
+  local _pwd
+  _pwd="$(pwd)"
+  while [ ! -d .git ]
+  do
+    cd ..
+  done
+  OLDPWD=$_pwd
+}
+
+alias gr='gitroot'
+function csview() {
+  cat "$1" | column -s, -t | less -#5 -SN 
+}
+
+
+# http://stackoverflow.com/a/10744524/908451
+function git-show-orig {
+    git status -su | grep -e"\.orig$" | cut -f2 -d" "
+}
+
+rifle() {
+  /usr/local/opt/ranger/libexec/ranger/ext/rifle.py "$@"
+}
+
+#function nvm() {
+  #if [[ -z $NVM_DIR ]]; then
+    #export NVM_DIR="/Users/bez/.nvm"
+    #source "$NVM_DIR/nvm.sh"
+    #nvm $@
+  #fi
+#}
+
+compinit -U tmuxp
+
+if [[ -n $TMUX_PANE ]] && [[ -n $PYENV_VERSION ]]; then
+  PYENV_VERSION=
+fi
+
+#function clear() {
+#  command clear
+#  if [[ -n $TMUX_PANE ]]; then
+#    tmux refresh-client
+#  fi
+#}
