@@ -253,3 +253,7 @@ fi
 #    tmux refresh-client
 #  fi
 #}
+
+mopidy-start() {
+  PYENV_VERSION=system mopidy --config <(gpg --decrypt ~/.config/mopidy/mopidy.conf.gpg)
+}
