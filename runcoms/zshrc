@@ -94,12 +94,12 @@ function src() {
   source $HOME/.dotfiles/zsh/.zprofile
 }
 
-#BASE16_SHELL=$HOME/.dotfiles/base16-shell/
-#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
 #export POWERLINE_PATH=$(powerline_lib_path)/powerline
 export HISTINGORE='clear:history'
 export HISTORYCONTROL='ignoreboth'
+
+BASE16_SHELL=$HOME/.dotfiles/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 
 # base16-shell
@@ -111,7 +111,7 @@ export BACKGROUND=${BACKGROUND:-"dark"}
 source $HOME/.dotfiles/zsh/colorscheme.zsh
 
 if [[ -z "$TMUX_PANE" && -z "$EMACS" ]]; then
-  base16 spacemacs
+  base16_spacemacs
 fi
 
 export ANSIBLE_NOCOWS=1
