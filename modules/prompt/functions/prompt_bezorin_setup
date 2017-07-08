@@ -80,7 +80,15 @@ function prompt_bezorin_precmd_async {
   # Get Git repository information.
   if (( $+functions[git-info] )); then
     git-info
-    typeset -p git_info >! "$_prompt_bezorin_precmd_async_data"
+    # Implement stopgap fix from sorin prompt
+    local tmp_prompt_var=$(typeset -p git_info)
+    # Replace all $ with $\ to escape
+    tmp_prompt_var=${tmp_prompt_var//\$/\\$}
+    # Unescape the first \$ as it's our $( )
+    tmp_prompt_var=${tmp_prompt_var:s/\\$/\$}
+    # Escape all backticks ` to \`
+    tmp_prompt_var=${tmp_prompt_var//\`/\\\`}
+    printf "%s\n" "$tmp_prompt_var" >! "$_prompt_bezorin_precmd_async_data"
   fi
 
   # Signal completion to parent process.
