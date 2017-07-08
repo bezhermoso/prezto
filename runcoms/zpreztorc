@@ -164,7 +164,12 @@ zstyle ':prezto:module:syntax-highlighting' styles \
   'builtin' 'fg=yellow,bold' \
   'command' 'fg=yellow' \
   'alias' 'fg=blue' \
-  'function' 'fg=magenta'
+  'function' 'fg=magenta' \
+  'single-hyphen-option' 'fg=243' \
+  'double-hyphen-option' 'fg=243' \
+  'back-quoted-argument' 'fg=yellow,standout' \
+  'dollar-double-quoted-argument' 'fg=202'
+
 #
 # Set syntax pattern styles.
 zstyle ':prezto:module:syntax-highlighting' pattern \
