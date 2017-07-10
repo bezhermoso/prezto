@@ -48,6 +48,7 @@ setopt PUSHD_MINUS
 setopt PUSHD_TO_HOME
 setopt PUSHD_IGNORE_DUPS
 setopt RM_STAR_WAIT
+setopt INTERACTIVE_COMMENTS
 
 # Show trailing slash on directories on `ls`
 alias ls="ls -GF"
