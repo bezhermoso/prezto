@@ -164,11 +164,15 @@ zstyle ':prezto:module:syntax-highlighting' styles \
   'builtin' 'fg=yellow,bold' \
   'command' 'fg=yellow' \
   'alias' 'fg=blue' \
+  'hashed-command' 'fg=blue' \
+  'precommand' 'fg=yellow,bold' \
   'function' 'fg=magenta' \
+  'single-quoted-argument' 'fg=green' \
+  'double-quoted-argument' 'fg=green' \
   'single-hyphen-option' 'fg=243' \
   'double-hyphen-option' 'fg=243' \
   'back-quoted-argument' 'fg=yellow,standout' \
-  'dollar-double-quoted-argument' 'fg=202' \
+  'dollar-double-quoted-argument' 'fg=yellow' \
   'back-double-quoted-argument' 'standout' \
   'back-dollar-quoted-argument' 'standout' \
   'assign' 'fg=blue' \
