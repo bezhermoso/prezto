@@ -41,8 +41,8 @@ alias ftp='noglob ftp'
 alias history='noglob history'
 alias locate='noglob locate'
 alias rake='noglob rake'
-alias rsync='noglob rsync_scp_wrap rsync'
-alias scp='noglob rsync_scp_wrap scp'
+alias rsync='noglob rsync_wrap'
+alias scp='noglob scp_wrap'
 # This function wraps rsync and scp so that remote paths are not globbed
 # but local paths are globbed. This is because the programs have their own
 # globbing for remote paths. The wrap function globs args starting in / and ./
@@ -61,6 +61,13 @@ function rsync_scp_wrap {
   esac; done
   command $cmd "${(@)args}"
 }
+function rsync_wrap {
+  rsync_scp_wrap "rsync" "$@"
+}
+function scp_wrap {
+  rsync_scp_wrap "scp" "$@"
+}
+
 alias sftp='noglob sftp'
 
 # Define general aliases.
@@ -82,10 +89,10 @@ alias mvi="${aliases[mv]:-mv} -i"
 alias cpi="${aliases[cp]:-cp} -i"
 alias lni="${aliases[ln]:-ln} -i"
 if zstyle -T ':prezto:module:utility' safe-ops; then
-  alias rm="${aliases[rm]:-rm} -i"
-  alias mv="${aliases[mv]:-mv} -i"
-  alias cp="${aliases[cp]:-cp} -i"
-  alias ln="${aliases[ln]:-ln} -i"
+  alias rm='rmi'
+  alias mv='mvi'
+  alias cp='cpi'
+  alias ln='lni'
 fi
 
 # ls
