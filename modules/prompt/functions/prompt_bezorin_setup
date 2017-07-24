@@ -105,7 +105,7 @@ function prompt_bezorin_precmd {
   prompt_bezorin_pwd
 
   # Define prompts.
-  RPROMPT='${editor_info[overwrite]}${VIM:+" %B%F{6}V%f%b"}'
+  #RPROMPT='${editor_info[overwrite]}${VIM:+" %B%F{6}V%f%b"}'
   
   #(tmux-register-lang-versions &>/dev/null &)
 
@@ -139,32 +139,31 @@ function prompt_bezorin_setup {
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{7}...%f%b'
   # zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{1}❯%F{3}❯%F{2}❯%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format '%F{3}›%f'
+  zstyle ':prezto:module:editor:info:keymap:primary' format '%(?:%F{3}:%F{1})›%f'
   zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format ' %F{3}♺%f'
   #zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%F{2}❮%F{3}❮%F{1}❮%f%b'
   zstyle ':prezto:module:editor:info:keymap:alternate' format '%F{4}ⅵ%f'
 
   # Set git-info parameters.
   zstyle ':prezto:module:git:info' verbose 'yes'
-  zstyle ':prezto:module:git:info:action' format '%F{7}:%f%%B%F{9}%s%f%%b'
+  zstyle ':prezto:module:git:info:action' format '%%B%F{9}%s%(s.:.)%f%%b'
   zstyle ':prezto:module:git:info:added' format ' %%B%F{2}+%f%%b'
   zstyle ':prezto:module:git:info:ahead' format ' %%B%F{13}↑%f%%b'
   zstyle ':prezto:module:git:info:behind' format ' %%B%F{13}↓%f%%b'
-  zstyle ':prezto:module:git:info:branch' format ' %%F{2}%b%f%'
+  zstyle ':prezto:module:git:info:branch' format ' %%F{2}%b%f% '
   zstyle ':prezto:module:git:info:commit' format ' %%B%F{3}%.7c%f%%b'
   zstyle ':prezto:module:git:info:deleted' format ' %%B%F{1}-%f%%b'
   zstyle ':prezto:module:git:info:modified' format ' %%B%F{3}±%f%%b'
-  zstyle ':prezto:module:git:info:position' format '%F{7}:%f%%B%F{13}%p%f%%b'
+  zstyle ':prezto:module:git:info:position' format '%F{6} (%p)%f'
   zstyle ':prezto:module:git:info:renamed' format ' %%B%F{5}→%f%%b'
   zstyle ':prezto:module:git:info:stashed' format ' %%B%F{6}▣%f%%b'
   zstyle ':prezto:module:git:info:unmerged' format ' %%B%F{1}!%f%%b'
   zstyle ':prezto:module:git:info:untracked' format ' %%B?%%b'
   zstyle ':prezto:module:git:info:keys' format \
-    'status' '%F{245}%f$(coalesce "%b" "%c"):%s%p%A%B%S%a%d%m%r%U%u %F{250}«%f '
+    'status' '%F{245}%f%s$(coalesce "%b" "%c%p")%A%B%S%a%d%m%r%U%u %F{250}«%f '
 
   # Define prompts.
-  PROMPT=$'\n%(?::%F{1}%B-$?-%b%f)${git_info:+${(e)git_info[status]}}${_prompt_bezorin_pwd}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
-  #PROMPT=$'\n%F{12}%B%n%b%f%F{12}@%m%f in ${_prompt_bezorin_pwd}%(?:: %F{1}< %U$?%u >%f)${git_info:+\n${(e)git_info[status]}}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]}$(tmux-register-lang-versions &>/dev/null &) '
+  PROMPT=$'\n${git_info:+${(e)git_info[status]}}${_prompt_bezorin_pwd}%(?:: %F{1}%?!%f)\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
   RPROMPT=''
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
   PS2='%F{242}›%f   '
