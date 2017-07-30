@@ -165,7 +165,7 @@ function prompt_bezorin_setup {
   # Define prompts.
   PROMPT=$'\n%(?::%F{1}%?! %f)${git_info:+${(e)git_info[status]}}${_prompt_bezorin_pwd}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
   RPROMPT=''
-  SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
+  SPROMPT='%Bzsh:%b correct %B%F{1}%R%f%b to %B%F{2}%r%f%b [nyae]? '
   PS2='%F{242}›%f   '
 }
 
