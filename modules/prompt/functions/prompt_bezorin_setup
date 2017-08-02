@@ -38,11 +38,12 @@ _prompt_bezorin_pwd_toggle=0
 function prompt_bezorin_pwd {
   local pwd="${PWD/#$HOME/~}"
   local dirs=("${(s#/#)pwd}")
+  dirs[$#dirs]="%B$dirs[$#dirs]%b"
   if [[ _prompt_bezorin_pwd_toggle -eq 0 && ${#dirs} -gt 4 ]]; then
     dirs=($(print -l ${dirs[-3,-1]}))
     _prompt_bezorin_pwd="%F{8}.../${(j#/#)dirs}%f"
   else
-    _prompt_bezorin_pwd="%F{8}%~%f"
+    _prompt_bezorin_pwd="%F{8}${(j#/#)dirs}%f"
   fi
 }
 
