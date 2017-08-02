@@ -210,17 +210,21 @@ function tmuxp() {
   eval "command tmuxp $_command"
 }
 
-gitroot() {
-  local _pwd
-  _pwd="$(pwd)"
-  while [ ! -d .git ]
-  do
-    cd ..
-  done
-  OLDPWD=$_pwd
+unalias gr
+function gr() {
+  local _dir=$(git rev-parse --show-toplevel 2>/dev/null)
+  local code=$?
+  if test $code != 0; then
+    >&2 echo 'Not a Git repo!'
+    exit 1
+  fi
+  local _pwd=$(pwd)
+  [[ $_pwd == $_dir ]] && return 0
+  OLDPWD="$(pwd)"
+  >&2 echo "Git repo root: $_dir"
+  cd $_dir
 }
 
-alias gr='gitroot'
 function csview() {
   cat "$1" | column -s, -t | less -#5 -SN 
 }
