@@ -111,7 +111,7 @@ export BACKGROUND=${BACKGROUND:-"dark"}
 #base16_$BASE16_FLAVOR
 source $HOME/.dotfiles/zsh/colorscheme.zsh
 
-if [[ -z "$TMUX_PANE" && -z "$EMACS" ]]; then
+if [[ -z "$TMUX_PANE" && -z "$EMACS" && -z "$SSH_TTY" ]]; then
   base16_spacemacs
 fi
 

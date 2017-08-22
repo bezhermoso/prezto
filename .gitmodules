@@ -33,7 +33,7 @@
 	url = https://github.com/marzocchi/zsh-notify.git
 [submodule "modules/escape-backtick/external"]
 	path = modules/escape-backtick/external
-	url = git@github.com:bezhermoso/zsh-escape-backtick.git
+	url = https://github.com/bezhermoso/zsh-escape-backtick.git
 [submodule "modules/prompt/external/async"]
 	path = modules/prompt/external/async
 	url = https://github.com/mafredri/zsh-async.git
