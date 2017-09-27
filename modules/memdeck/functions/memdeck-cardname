@@ -1,0 +1,41 @@
+# vim set syntax=zsh
+
+function memdeck-cardname {
+  local value
+  local suit
+
+  if  [[ $1 =~ '(C|H|S|D)$' ]]; then
+    suit=${1: -1}
+  else
+    >&2 echo "Failed to parse card."
+    return 1
+  fi
+
+  if [[ $1 =~ '^(A|J|Q|K)' ]]; then
+    value=${1%?}
+  elif [[ $1 =~ '^([2-9]|10).$' ]]; then
+    value=${1%?}
+  else
+    >&2 echo "Failed to parse card."
+    return 2
+  fi
+
+  case $value in
+    A) value="Ace";;
+    J) value="Jack";;
+    Q) value="Queen";;
+    K) value="King";;
+  esac
+  case $suit in
+    C) suit="Clubs";;
+    H) suit="Hearts";;
+    S) suit="Spades";;
+    D) suit="Diamonds";;
+  esac
+
+  echo "${value} of ${suit}"
+  return 0
+}
+
+memdeck-cardname "$@"
+

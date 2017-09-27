@@ -1,0 +1,7 @@
+# vim set syntax=zsh
+
+function memdeck-train {
+  local stack="$1"
+}
+
+memdeck-train "$@"
