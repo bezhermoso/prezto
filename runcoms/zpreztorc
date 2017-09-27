@@ -134,6 +134,10 @@ zstyle ':prezto:module:git:status:ignore' submodules 'all'
 # zstyle ':prezto:module:prompt' pwd-length 'short'
 zstyle ':prezto:module:prompt' theme 'bezorin'
 
+# Set the prompt to display the return code along with an indicator for non-zero
+# return codes. This is not supported by all prompts.
+# zstyle ':prezto:module:prompt' show-return-val 'yes'
+
 #
 # Ruby
 #
