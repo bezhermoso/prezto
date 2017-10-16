@@ -69,11 +69,31 @@ fpath=($HOME/.dotfiles/zsh/functions /usr/local/share/zsh-completions $fpath)
 
 # rbenv
 if (( $+commands[rbenv] )); then
-  eval "$(rbenv init -)"
+  local _rbenv_init=
+  function _rbenv-lazy-init () {
+    local args="$@"
+    if [[ -z $_rbenv_init ]]; then
+      _rbenv_init=1
+      unalias rbenv
+      eval "$(rbenv init -)"
+    fi
+    eval "rbenv $args"
+  }
+  alias rbenv="_rbenv-lazy-init"
 fi
 
 if (( $+commands[pyenv] )); then
-  eval "$(pyenv init -)"
+  local _pyenv_init=
+  function _pyenv-lazy-init () {
+    local args="$@"
+    if [[ -z $_pyenv_init ]]; then
+      _pyenv_init=1
+      unalias pyenv
+      eval "$(pyenv init -)"
+    fi
+    eval "pyenv $args"
+  }
+  alias pyenv="_pyenv-lazy-init"
 fi
 
 if (( $+commands[pyenv-virtualenv] )); then
@@ -81,7 +101,17 @@ if (( $+commands[pyenv-virtualenv] )); then
 fi
 
 if (( $+commands[nodenv] )); then
-  eval "$(nodenv init -)"
+  local _nodenv_init=
+  function _nodenv-lazy-init () {
+    local args="$@"
+    if [[ -z $_nodenv_init ]]; then
+      _nodenv_init=1
+      unalias nodenv
+      eval "$(nodenv init -)"
+    fi
+    eval "nodenv $args"
+  }
+  alias nodenv="_nodenv-lazy-init"
 fi
 
 if [[ -f $HOME/.phpbrew/bashrc ]]; then
