@@ -313,3 +313,5 @@ function cd() {
     cd $_path
   fi
 }
+
+export PYTHON_CONFIGURE_OPTS="--enable-framework CC=clang"
