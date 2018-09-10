@@ -11,7 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-[[ -n $TMUX ]] && export TERM=screen-256color || export TERM=xterm-256color
+[[ -n $TMUX ]] && export TERM=screen-256color || export TERM=screen-256color
 
 #export ZPLUG_HOME=/usr/local/opt/zplug
 #[ -f $ZPLUG_HOME/init.zsh ] && source $ZPLUG_HOME/init.zsh || :
@@ -96,7 +96,11 @@ export HISTINGORE='clear:history'
 export HISTORYCONTROL='ignoreboth'
 
 BASE16_SHELL=$HOME/.dotfiles/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+[ -n "$PS1" ] \
+  && [ -z "$VIM" ] \
+  && [ -s $BASE16_SHELL/profile_helper.sh ] \
+  && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 
 # base16-shell
@@ -191,7 +195,7 @@ elif (( $+commands[highlight] )); then
   #
   # `less` with syntax-highlighting using `highlight`
   # https://gist.github.com/textarcana/4611277#gistcomment-1701305
-  export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style base16"
+  export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style base16-materia"
   # Use "highlight" in place of "cat"
   #alias cat="highlight $1 --out-format xterm256 --line-numbers --quiet --force --style base16"
 fi
@@ -315,3 +319,9 @@ function cd() {
 }
 
 export PYTHON_CONFIGURE_OPTS="--enable-framework CC=clang"
+
+if [[ -f $HOME/.dotfiles/zsh/.zprezto/runcoms/weebly.zshrc ]]; then
+  source $HOME/.dotfiles/zsh/.zprezto/runcoms/weebly.zshrc
+fi
+
+alias kb="kubectl"
