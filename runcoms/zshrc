@@ -124,7 +124,6 @@ alias reinit-markers='/System/Library/Frameworks/CoreServices.framework/Versions
 #source "$HOME/.console/console.rc" 2>/dev/null
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
-export HOMEBREW_GITHUB_API_TOKEN=d58859dc3ff27a7b3af1580389f47846600826ba
 
 alias mcs='emacsclient -t -a ""'
 alias vim="nvim"
