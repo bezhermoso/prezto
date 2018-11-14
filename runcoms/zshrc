@@ -325,3 +325,5 @@ if [[ -f $HOME/.dotfiles/zsh/.zprezto/runcoms/weebly.zshrc ]]; then
 fi
 
 alias kb="kubectl"
+
+base16_brewer
