@@ -326,4 +326,11 @@ fi
 
 alias kb="kubectl"
 
+function alfred-restart () {
+  qapp 'Alfred 3' && open -a 'Alfred 3'
+}
+
 base16_brewer
+
+
+
