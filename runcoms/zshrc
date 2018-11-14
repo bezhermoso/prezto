@@ -104,7 +104,7 @@ BASE16_SHELL=$HOME/.dotfiles/base16-shell/
 
 
 # base16-shell
-export BASE16_FLAVOR=${BASE16_FLAVOR:-"bright"}
+export BASE16_FLAVOR=${BASE16_FLAVOR:-"brewer"}
 export VIM_COLOR="base16-${BASE16_FLAVOR}"
 export BACKGROUND=${BACKGROUND:-"dark"}
 #
