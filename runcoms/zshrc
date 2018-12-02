@@ -32,8 +32,9 @@ export FZF_DEFAULT_OPTS=' --color=fg:7,bg:0,hl:1,bg+:18,fg+:5,hl+:1,info:8,promp
   --prompt="› "
   --tabstop=2
   -1
-  --preview="[[ ! -d {} ]] && bat --style=numbers --color=always {} || :"
+  --preview="[[ -d {} ]] && tree -L 1 {} || bat --style=numbers --color=always {}"
 '
+export FZF_CTRL_R_OPTS='--preview=""'
 
 # Will have to redefine $EDITOR because `tumult` might have overwritten it.
 # export EDITOR=nvim
@@ -54,7 +55,7 @@ setopt INTERACTIVE_COMMENTS
 
 # Show trailing slash on directories on `ls`
 alias ls="ls -GF"
-bindkey "^r" history-incremental-search-backward
+#bindkey "^r" history-incremental-search-backward
 
 autoload -Uz surround
 zle -N delete-surround surround
