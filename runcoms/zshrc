@@ -32,6 +32,7 @@ export FZF_DEFAULT_OPTS=' --color=fg:7,bg:0,hl:1,bg+:18,fg+:5,hl+:1,info:8,promp
   --prompt="› "
   --tabstop=2
   -1
+  --preview="[[ ! -d {} ]] && bat --style=numbers --color=always {} || :"
 '
 
 # Will have to redefine $EDITOR because `tumult` might have overwritten it.
