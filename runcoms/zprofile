@@ -46,7 +46,11 @@ export PATH="/Projects/Personal/DrupalConsole/bin:$PATH"
 # phpbrew
 [[ -s "${HOME}/.phpbrew/bashrc" ]] && source "$HOME/.phpbrew/bashrc"
 
+# Executables installed via Composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+# Rust executables
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
@@ -98,3 +102,4 @@ export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$PATH"
 export VAGRANT_I_KNOW_WHAT_IM_DOING_PLEASE_BE_QUIET=true
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
+export TILLER_NAMESPACE=tiller
