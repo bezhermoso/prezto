@@ -342,7 +342,9 @@ function alfred-restart () {
   qapp 'Alfred 3' && open -a 'Alfred 3'
 }
 
-base16_brewer
+if [[ -z $TMUX ]]; then
+  base16_brewer
+fi
 
 
 
