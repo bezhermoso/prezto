@@ -29,9 +29,9 @@
 # Load dependencies.
 pmodload 'helper'
 
-function prompt_bezorin_async_callback {
+function prompt_bezorin2_async_callback {
   case $1 in
-    prompt_bezorin_async_git)
+    prompt_bezorin2_async_git)
       # We can safely split on ':' because it isn't allowed in ref names.
       IFS=':' read _git_target _git_post_target <<<"$3"
 
@@ -41,20 +41,20 @@ function prompt_bezorin_async_callback {
 
       if [[ -z "$_git_target" ]]; then
         # No git target detected, flush the git fragment and redisplay the prompt.
-        if [[ -n "$_prompt_bezorin_git" ]]; then
-          _prompt_bezorin_git=''
+        if [[ -n "$_prompt_bezorin2_git" ]]; then
+          _prompt_bezorin2_git=''
           zle && zle reset-prompt
         fi
       else
         # Git target detected, update the git fragment and redisplay the prompt.
-        _prompt_bezorin_git="${_git_target}${_git_post_target}"
+        _prompt_bezorin2_git="${_git_target}${_git_post_target}"
         zle && zle reset-prompt
       fi
       ;;
   esac
 }
 
-function prompt_bezorin_async_git {
+function prompt_bezorin2_async_git {
   cd -q "$1"
   if (( $+functions[git-info] )); then
     git-info
@@ -62,36 +62,36 @@ function prompt_bezorin_async_git {
   fi
 }
 
-function prompt_bezorin_async_tasks {
+function prompt_bezorin2_async_tasks {
   # Initialize async worker. This needs to be done here and not in
-  # prompt_bezorin_setup so the git formatting can be overridden by other prompts.
+  # prompt_bezorin2_setup so the git formatting can be overridden by other prompts.
   if (( !${prompt_prezto_async_init:-0} )); then
-    async_start_worker prompt_bezorin -n
-    async_register_callback prompt_bezorin prompt_bezorin_async_callback
+    async_start_worker prompt_bezorin2 -n
+    async_register_callback prompt_bezorin2 prompt_bezorin2_async_callback
     typeset -g prompt_prezto_async_init=1
   fi
 
   # Kill the old process of slow commands if it is still running.
-  async_flush_jobs prompt_bezorin
+  async_flush_jobs prompt_bezorin2
 
   # Compute slow commands in the background.
-  async_job prompt_bezorin prompt_bezorin_async_git "$PWD"
+  async_job prompt_bezorin2 prompt_bezorin2_async_git "$PWD"
 }
 
-function prompt_bezorin_precmd {
+function prompt_bezorin2_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
 
   # Format PWD.
-  _prompt_bezorin_pwd=$(prompt-bezorin-pwd)
+  _prompt_bezorin2_pwd=$(prompt-bezorin2-pwd)
 
   # Handle updating git data. We also clear the git prompt data if we're in a
   # different git root now.
   if (( $+functions[git-dir] )); then
     local new_git_root="$(git-dir 2> /dev/null)"
-    if [[ $new_git_root != $_bezorin_cur_git_root ]]; then
-      _prompt_bezorin_git=''
-      _bezorin_cur_git_root=$new_git_root
+    if [[ $new_git_root != $_bezorin2_cur_git_root ]]; then
+      _prompt_bezorin2_git=''
+      _bezorin2_cur_git_root=$new_git_root
     fi
   fi
 
@@ -100,34 +100,37 @@ function prompt_bezorin_precmd {
     python-info
   fi
 
-  prompt_bezorin_async_tasks
+  prompt_bezorin2_async_tasks
 }
 
-function prompt-bezorin-pwd {
+_prompt_bezorin_pwd_toggle=0
+
+function prompt-bezorin2-pwd {
   local pwd="${PWD/#$HOME/~}"
   local dirs=("${(s#/#)pwd}")
   dirs[$#dirs]="%B$dirs[$#dirs]%b"
-  if [[ _prompt_bezorin_pwd_toggle -eq 0 && ${#dirs} -gt 4 ]]; then
+  if [[ _prompt_bezorin2_pwd_toggle -eq 0 && ${#dirs} -gt 4 ]]; then
     dirs=($(print -l ${dirs[-3,-1]}))
-    _prompt_bezorin_pwd="%F{8}.../${(j#/#)dirs}%f"
+    _prompt_bezorin2_pwd="%F{8}.../${(j#/#)dirs}%f"
   else
-    _prompt_bezorin_pwd="%F{8}${(j#/#)dirs}%f"
+    _prompt_bezorin2_pwd="%F{8}${(j#/#)dirs}%f"
   fi
+  echo "$_prompt_bezorin2_pwd"
 }
 
-function prompt_bezorin_setup {
+function prompt_bezorin2_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent sp subst)
-  _prompt_bezorin_precmd_async_pid=0
-  _prompt_bezorin_precmd_async_data=$(mktemp "${TMPDIR:-/tmp}/bezorin-prompt-async-XXXXXXXXXX")
+  _prompt_bezorin2_precmd_async_pid=0
+  _prompt_bezorin2_precmd_async_data=$(mktemp "${TMPDIR:-/tmp}/bezorin2-prompt-async-XXXXXXXXXX")
 
   # Load required functions.
   autoload -Uz add-zsh-hook
   autoload -Uz async && async
 
   # Add hook for calling git-info before each command.
-  add-zsh-hook precmd prompt_bezorin_precmd
+  add-zsh-hook precmd prompt_bezorin2_precmd
 
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{7}...%f%b'
@@ -151,7 +154,7 @@ function prompt_bezorin_setup {
   zstyle ':prezto:module:git:info:unmerged' format ' %%B%F{1}!%f%%b'
   zstyle ':prezto:module:git:info:untracked' format ' %%B?%%b'
   zstyle ':prezto:module:git:info:keys' format \
-    'status' '%s$(coalesce "%b" "%c%p")%A%B%S%a%d%m%r%U%u %F{250}«%f '
+    'status' '%s %b %c%p %A%B%S%a%d%m%r%U%u %F{250}«%f '
 
   # Set python-info parameters.
   zstyle ':prezto:module:python:info:virtualenv' format '%f%F{3}(%v)%F{7} '
@@ -164,25 +167,25 @@ function prompt_bezorin_setup {
   fi
 
   # Get the async worker set up.
-  _bezorin_cur_git_root=''
+  _bezorin2_cur_git_root=''
 
-  _prompt_bezorin_git=''
-  _prompt_bezorin_pwd=''
+  _prompt_bezorin2_git=''
+  _prompt_bezorin2_pwd=''
 
   # Define prompts.
-  PROMPT=$'\n %(?::%F{1}%?! %f)%B${SSH_CONNECTION:+$USER@$(hostname) }%b${git_info:+${(e)git_info[status]}}${_prompt_bezorin_pwd}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
+  PROMPT=$'\n %(?::%F{1}%?! %f)%B${SSH_CONNECTION:+$USER@$(hostname) }%b${_prompt_bezorin2_git} ${_prompt_bezorin2_pwd}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
   RPROMPT=''
   SPROMPT='%Bzsh:%b correct %B%F{1}%R%f%b to %B%F{2}%r%f%b [nyae]? '
   PS2='%F{242}›%f   '
 }
 
-function prompt_bezorin_preview {
+function prompt_bezorin2_preview {
   local +h PROMPT=''
   local +h RPROMPT=''
   local +h SPROMPT=''
 
   editor-info 2> /dev/null
-  prompt_preview_theme 'bezorin'
+  prompt_preview_theme 'bezorin2'
 }
 
-prompt_bezorin_setup "$@"
+prompt_bezorin2_setup "$@"
