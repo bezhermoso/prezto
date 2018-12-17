@@ -351,3 +351,4 @@ if [[ -z $TMUX ]]; then
 fi
 
 export BAT_PAGER='less -m -i -n -u -R -F'
+#export PROMPT_EOL_MARK='%K{8}%F{0}%%%f%k'
