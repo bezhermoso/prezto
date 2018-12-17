@@ -344,6 +344,8 @@ function alfred-restart () {
   qapp 'Alfred 3' && open -a 'Alfred 3'
 }
 
+# Prevent refreshing color schemes when opening panes in tmux.
+# The color scheme active on parent shell should already apply.
 if [[ -z $TMUX ]]; then
   base16_brewer
 fi
