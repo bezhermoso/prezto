@@ -341,7 +341,7 @@ fi
 alias kb="kubectl"
 
 function alfred-restart () {
-  qapp 'Alfred 3' && open -a 'Alfred 3'
+  qapp 'Alfred 4' && open -a 'Alfred 4'
 }
 
 # Prevent refreshing color schemes when opening panes in tmux.
