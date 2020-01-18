@@ -104,7 +104,18 @@ function prompt_bezorin2_precmd {
   prompt_bezorin2_async_tasks
 }
 
-_prompt_bezorin_pwd_toggle=0
+function prompt_bezorin2_toggle_pwd {
+  if [[ _prompt_bezorin2_pwd_toggle -eq 1 ]]; then
+    _prompt_bezorin2_pwd_toggle=0
+  else
+    _prompt_bezorin2_pwd_toggle=1 
+  fi
+  _prompt_bezorin2_pwd=$(prompt-bezorin2-pwd)
+  zle && zle reset-prompt
+}
+
+zle -N prompt_bezorin2_toggle_pwd
+
 
 function prompt-bezorin2-pwd {
   local pwd="${PWD/#$HOME/~}"
@@ -126,12 +137,16 @@ function prompt_bezorin2_setup {
   #_prompt_bezorin2_precmd_async_pid=0
   #_prompt_bezorin2_precmd_async_data=$(mktemp "${TMPDIR:-/tmp}/bezorin2-prompt-async-XXXXXXXXXX")
 
+  _prompt_bezorin2_pwd_toggle=0
   # Load required functions.
   autoload -Uz add-zsh-hook
   autoload -Uz async && async
 
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_bezorin2_precmd
+
+  bindkey '^f' prompt_bezorin2_toggle_pwd
+
 
   # Tell prezto we can manage this prompt
   zstyle ':prezto:module:prompt' managed 'yes'
