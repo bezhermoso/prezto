@@ -47,7 +47,8 @@ function prompt_bezorin2_async_callback {
         fi
       else
         # Git target detected, update the git fragment and redisplay the prompt.
-        _prompt_bezorin2_git="${_git_target}${_git_post_target}"
+        # Replace @@ with space
+        _prompt_bezorin2_git="${_git_target/@@/ }${_git_post_target}"
         zle && zle reset-prompt
       fi
       ;;
@@ -122,8 +123,8 @@ function prompt_bezorin2_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent sp subst)
-  _prompt_bezorin2_precmd_async_pid=0
-  _prompt_bezorin2_precmd_async_data=$(mktemp "${TMPDIR:-/tmp}/bezorin2-prompt-async-XXXXXXXXXX")
+  #_prompt_bezorin2_precmd_async_pid=0
+  #_prompt_bezorin2_precmd_async_data=$(mktemp "${TMPDIR:-/tmp}/bezorin2-prompt-async-XXXXXXXXXX")
 
   # Load required functions.
   autoload -Uz add-zsh-hook
@@ -131,6 +132,9 @@ function prompt_bezorin2_setup {
 
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_bezorin2_precmd
+
+  # Tell prezto we can manage this prompt
+  zstyle ':prezto:module:prompt' managed 'yes'
 
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{7}...%f%b'
@@ -149,13 +153,13 @@ function prompt_bezorin2_setup {
   zstyle ':prezto:module:git:info:commit' format '%F{3}%.7c%f'
   zstyle ':prezto:module:git:info:deleted' format ' %%B%F{1}-%f%%b'
   zstyle ':prezto:module:git:info:modified' format ' %%B%F{3}±%f%%b'
-  zstyle ':prezto:module:git:info:position' format ' %%B%F{6}%p%f%%b'
+  zstyle ':prezto:module:git:info:position' format '%%B@@%F{6}%p%f%%b'
   zstyle ':prezto:module:git:info:renamed' format ' %%B%F{5}→%f%%b'
   zstyle ':prezto:module:git:info:stashed' format ' %%B%F{6}▣%f%%b'
   zstyle ':prezto:module:git:info:unmerged' format ' %%B%F{1}!%f%%b'
   zstyle ':prezto:module:git:info:untracked' format ' %%B?%%b'
   zstyle ':prezto:module:git:info:keys' format \
-    'status' '%b %c%p :%s%A%B%S%a%d%m%r%U%u %F{250}«%f '
+    'status' '%b %c%p %c:%s%A%B%S%a%d%m%r%U%u %F{250}«%f '
 
   # Set python-info parameters.
   zstyle ':prezto:module:python:info:virtualenv' format '%f%F{3}(%v)%F{7} '
