@@ -97,7 +97,7 @@ fi
 TMPPREFIX="${TMPDIR%/}/zsh"
 
 # custom executables
-export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$HOME/.symfony/bin:$HOME/.jetbrains/bin:$PATH"
 
 export VAGRANT_I_KNOW_WHAT_IM_DOING_PLEASE_BE_QUIET=true
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
