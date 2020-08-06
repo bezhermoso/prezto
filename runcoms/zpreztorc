@@ -47,6 +47,7 @@ zstyle ':prezto:load' pmodule \
   'escape-backtick' \
   'deer' \
   'memdeck' \
+  'homebrew' \
   'prompt'
 
 # `directory` options
