@@ -106,3 +106,4 @@ export TILLER_NAMESPACE=tiller
 export GO111MODULE=on
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/go
+export BAT_THEME=gruvbox-dark
