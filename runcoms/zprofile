@@ -109,8 +109,7 @@ export GOPATH=$HOME/go
 
 export BAT_THEME=gruvbox-dark
 
-source spotipy.zsh
-
+source $HOME/.dotfiles/zsh/.zprezto/spotipy.zsh
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
