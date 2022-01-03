@@ -105,11 +105,14 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export TILLER_NAMESPACE=tiller
 export GO111MODULE=on
 export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/go
-
+#export GOPATH=$HOME/go
 export BAT_THEME=gruvbox-dark
 
-source $HOME/.dotfiles/zsh/.zprezto/spotipy.zsh
+spotipy_env_file="$HOME/.dotfiles/zsh/.zprezto/spotipy.zsh"
+
+if [[ -f $spotipy_env_file ]]; then
+  source $HOME/.dotfiles/zsh/.zprezto/spotipy.zsh
+fi
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
