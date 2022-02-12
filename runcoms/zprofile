@@ -107,7 +107,7 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 export TILLER_NAMESPACE=tiller
 export GO111MODULE=on
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT="$HOMEBREW_PREFIX/opt/go/libexec"
 #export GOPATH=$HOME/go
 export BAT_THEME=gruvbox-dark
 
