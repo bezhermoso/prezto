@@ -193,7 +193,7 @@ function prompt_bezorin2_setup {
   _prompt_bezorin2_pwd=''
 
   # Define prompts.
-  PROMPT=$'\n %(?::%F{1}%?! %f)%B${SSH_CONNECTION:+$USER@$(hostname) }%b${_prompt_bezorin2_git}${_prompt_bezorin2_pwd}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
+  PROMPT=$'\n %(?::%F{1}exited: %B%?%b\n %f)%B${SSH_CONNECTION:+$USER@$(hostname) }%b${_prompt_bezorin2_git}${_prompt_bezorin2_pwd}\n%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
   RPROMPT=''
   SPROMPT='%Bzsh:%b correct %B%F{1}%R%f%b to %B%F{2}%r%f%b [nyae]? '
   PS2='%F{242}›%f   '
