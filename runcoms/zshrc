@@ -352,6 +352,12 @@ function alfred-restart () {
   qapp 'Alfred 4' && open -a 'Alfred 4'
 }
 
+# Load man page as PDF in Preview
+# From: https://mjtsai.com/blog/2022/11/20/viewing-man-pages-on-ventura/
+function manpdf() {
+  mandoc -T pdf "$(/usr/bin/man -w $@)" | open -fa Preview
+}
+
 # Prevent refreshing color schemes when opening panes in tmux.
 # The color scheme active on parent shell should already apply.
 if [[ -z $TMUX ]]; then
