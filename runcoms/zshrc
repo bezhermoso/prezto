@@ -10,8 +10,6 @@ work_config_entrypoint="${HOME}/.dotfiles/work-entrypoint.sh"
 if [[ -f  $work_config_entrypoint ]]; then
   echo "Loading \$WORK configuration..."
   source $work_config_entrypoint
-else
-  echo "Cannot load $work_config_entrypoint"
 fi
 
 # Source Prezto.
@@ -148,8 +146,8 @@ alias quit=exit
 alias ydl="youtube-dl"
 nvimdiff="nvim -d"
 
-export GPG_TTY=$(tty)
-export PINENTRY_USER_DATA="USE_CURSES=1"
+#export GPG_TTY=$(tty)
+#export PINENTRY_USER_DATA="USE_CURSES=1"
 
 alias color-table="vim +XtermColorTable +only"
 
