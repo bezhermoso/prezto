@@ -387,3 +387,9 @@ if [[ -f  $work_config_entrypoint_post ]]; then
   echo "Loading \$WORK post-configuration..."
   source $work_config_entrypoint_post
 fi
+
+
+# direnv
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
+fi
