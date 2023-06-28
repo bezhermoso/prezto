@@ -168,6 +168,9 @@ alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
 
+# Explicitly run command in Rosetta mode (Apple Silicon)
+alias rosetta="arch -x86_64"
+
 
 start-copy-server() {
   while true; do nc -l 4737 | pbcopy; done 2>&1 &
