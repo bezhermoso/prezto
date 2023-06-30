@@ -359,10 +359,12 @@ function manpdf() {
   mandoc -T pdf "$(/usr/bin/man -w $@)" | open -fa Preview
 }
 
+alias hahaha="echo 1"
+
 # Prevent refreshing color schemes when opening panes in tmux.
 # The color scheme active on parent shell should already apply.
 if [[ -z $TMUX ]]; then
-  base16_brewer
+  eval base16_${BASE16_FLAVOR}
 fi
 
 export BAT_PAGER='less -R'
