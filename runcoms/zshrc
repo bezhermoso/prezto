@@ -398,3 +398,7 @@ fi
 if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
 fi
+
+if (( $+commands[yt-dlp] )); then
+  alias youtube-dl="yt-dlp"
+fi
