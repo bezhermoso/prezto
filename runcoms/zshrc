@@ -29,6 +29,26 @@ fi
 #autoload bashcompinit
 #bashcompinit
 
+# https://github.com/sharkdp/bat
+if (( $+commands[bat] )); then
+  alias cat="bat --paging=never"
+fi
+
+if (( $+commands[batman] )); then
+  # DO NOT SET BAT_PAGER!
+  #export BAT_PAGER='less -R'
+  alias man="batman"
+fi
+
+batdiff() {
+    git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
+
 export GREP_COLOR='1;37;41'
 export FZF_COMPLETION_TRIGGER='~~'
 #export FZF_DEFAULT_COMMAND="ag --hidden --skip-vcs-ignores --ignore .git --ignore /keybase -f -g \"\""
@@ -38,9 +58,11 @@ export FZF_DEFAULT_OPTS=' --color=fg:7,bg:0,hl:1,bg+:18,fg+:5,hl+:1,info:8,promp
   --prompt="› "
   --tabstop=2
   -1
-  --preview="[[ -d {} ]] && tree -L 1 {} || bat --style=numbers --color=always {}"
+  --preview="[[ -d {} ]] && tree -L 1 {} || bat --style=numbers --color=always --line-range=:500 {}"
 '
 export FZF_CTRL_R_OPTS='--preview=""'
+
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Will have to redefine $EDITOR because `tumult` might have overwritten it.
 # export EDITOR=nvim
@@ -367,7 +389,6 @@ if [[ -z $TMUX ]]; then
   eval base16_${BASE16_FLAVOR}
 fi
 
-export BAT_PAGER='less -R'
 #export PROMPT_EOL_MARK='%K{8}%F{0}%%%f%k'
 #
 export PATH="${GOPATH}/bin:${PATH}"
@@ -402,3 +423,4 @@ fi
 if (( $+commands[yt-dlp] )); then
   alias youtube-dl="yt-dlp"
 fi
+
