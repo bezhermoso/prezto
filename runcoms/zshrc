@@ -202,7 +202,7 @@ elif (( $+commands[highlight] )); then
   # `less` with syntax-highlighting using `source-highlight`
   # https://gist.github.com/textarcana/4611277
   #if (( $+commands[source-highlight] )); then
-    #export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s" 
+    #export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
     #export LESS=" -R "
     #alias less='less -m -N -g -i -J --underline-special --SILENT'
     #alias more='less'
@@ -256,7 +256,7 @@ function gr() {
 }
 
 function csview() {
-  cat "$1" | column -s, -t | less -#5 -SN 
+  cat "$1" | column -s, -t | less -#5 -SN
 }
 
 
