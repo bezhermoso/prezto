@@ -62,8 +62,6 @@ export FZF_DEFAULT_OPTS=' --color=fg:7,bg:0,hl:1,bg+:18,fg+:5,hl+:1,info:8,promp
 '
 export FZF_CTRL_R_OPTS='--preview=""'
 
-# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
 # Will have to redefine $EDITOR because `tumult` might have overwritten it.
 # export EDITOR=nvim
 
@@ -139,16 +137,17 @@ BASE16_SHELL=$HOME/.dotfiles/base16-shell/
 
 
 # base16-shell
-export BASE16_FLAVOR=${BASE16_FLAVOR:-"brewer"}
-export VIM_COLOR="base16-${BASE16_FLAVOR}"
-export BACKGROUND=${BACKGROUND:-"dark"}
+#export BASE16_FLAVOR=${BASE16_FLAVOR:-"gruvbox-dark-hard"}
+#export VIM_COLOR="base16-${BASE16_FLAVOR}"
+#export BACKGROUND=${BACKGROUND:-"dark"}
+
 #
 #base16_$BASE16_FLAVOR
 source $HOME/.dotfiles/zsh/colorscheme.zsh
 
-if [[ -z "$TMUX_PANE" && -z "$EMACS" && -z "$SSH_TTY" ]]; then
-  base16_spacemacs
-fi
+#if [[ -z "$TMUX_PANE" && -z "$EMACS" && -z "$SSH_TTY" ]]; then
+#  base16_spacemacs
+#fi
 
 export ANSIBLE_NOCOWS=1
 
@@ -386,7 +385,7 @@ alias hahaha="echo 1"
 # Prevent refreshing color schemes when opening panes in tmux.
 # The color scheme active on parent shell should already apply.
 if [[ -z $TMUX ]]; then
-  eval base16_${BASE16_FLAVOR}
+#  "base16_${BASE16_FLAVOR}"
 fi
 
 #export PROMPT_EOL_MARK='%K{8}%F{0}%%%f%k'
