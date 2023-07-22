@@ -44,3 +44,6 @@
 [submodule "module/jump-to-git-root"]
 	path = module/jump-to-git-root
 	url = git@github.com:bezhermoso/jump-to-git-root.git
+[submodule "modules/jump-to-git-root"]
+	path = modules/jump-to-git-root
+	url = git@github.com:bezhermoso/jump-to-git-root.git

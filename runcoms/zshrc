@@ -281,10 +281,7 @@ function qapp() {
 }
 
 unalias gr
-if [[ -f $HOME/.dotfiles/git-jump-root/jump-to-git-root.sh ]]; then
-  source $HOME/.dotfiles/git-jump-root/jump-to-git-root.sh
-  alias gr='jump-to-git-root'
-fi
+alias gr='jump-to-git-root'
 
 function csview() {
   cat "$1" | column -s, -t | less -#5 -SN
