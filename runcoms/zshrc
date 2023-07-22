@@ -143,11 +143,6 @@ function src() {
   source $HOME/.dotfiles/zsh/.zprofile
 }
 
-# SHELL HISTORY WITH atuin: https://github.com/ellie/atuin
-if (( $+commands[atuin] )); then
-  eval "$(atuin init zsh)"
-fi
-
 export HISTINGORE='clear:history'
 export HISTORYCONTROL='ignoreboth'
 
@@ -193,6 +188,13 @@ export FZF_DEFAULT_OPTS=' --color=fg:7,bg:0,hl:1,bg+:18,fg+:5,hl+:1,info:8,promp
 export FZF_CTRL_R_OPTS='--preview=""'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# SHELL HISTORY WITH atuin: https://github.com/ellie/atuin
+if (( $+commands[atuin] )); then
+  eval "$(atuin init zsh)"
+fi
+# Register *after* FZF so that atuin history widgets win
+
 
 # Parent directory selection using `fzf`
 function _parent_dirlist_fzf() {
