@@ -143,7 +143,11 @@ function src() {
   source $HOME/.dotfiles/zsh/.zprofile
 }
 
-#export POWERLINE_PATH=$(powerline_lib_path)/powerline
+# SHELL HISTORY WITH atuin: https://github.com/ellie/atuin
+if (( $+commands[atuin] )); then
+  eval "$(atuin init zsh)"
+fi
+
 export HISTINGORE='clear:history'
 export HISTORYCONTROL='ignoreboth'
 
@@ -409,4 +413,3 @@ fi
 if (( $+commands[yt-dlp] )); then
   alias youtube-dl="yt-dlp"
 fi
-
