@@ -190,6 +190,7 @@ export FZF_CTRL_R_OPTS='--preview=""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # SHELL HISTORY WITH atuin: https://github.com/ellie/atuin
+export ATUIN_CONFIG_DIR=$HOME/.dotfiles/atuin
 if (( $+commands[atuin] )); then
   eval "$(atuin init zsh)"
 fi
