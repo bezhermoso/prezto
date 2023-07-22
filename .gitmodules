@@ -41,3 +41,6 @@
 	path = modules/prompt/external/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
 	shallow = true
+[submodule "module/jump-to-git-root"]
+	path = module/jump-to-git-root
+	url = git@github.com:bezhermoso/jump-to-git-root.git
