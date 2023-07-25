@@ -12,6 +12,11 @@
 #export TERM='xterm-256color'
 
 ## Setup terminal colors first. I use base16-shell
+#
+if [[ -f $HOME/.dotfiles/base16-fzf/.git ]]; then
+  export BASE16_FZF_PATH="$HOME/.dotfiles/base16-fzf"
+fi
+
 BASE16_SHELL_PATH="$HOME/.dotfiles/base16-shell"
 [ -n "$PS1" ] && \
   [ -s "$BASE16_SHELL_PATH/profile_helper.sh" ] && \
