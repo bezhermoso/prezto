@@ -195,7 +195,7 @@ export FZF_CTRL_R_OPTS='--preview=""'
 # SHELL HISTORY WITH atuin: https://github.com/ellie/atuin
 export ATUIN_CONFIG_DIR=$HOME/.dotfiles/atuin
 if (( $+commands[atuin] )); then
-  eval "$(atuin init zsh)"
+  eval "$(atuin init zsh --disable-up-arrow)"
 fi
 # Register *after* FZF so that atuin history widgets win
 
