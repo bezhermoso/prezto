@@ -63,6 +63,8 @@ fi
 #bashcompinit
 
 # https://github.com/sharkdp/bat
+#export BAT_THEME=base16
+export BAT_CONFIG_PATH=$HOME/.dotfiles/bat/config
 if (( $+commands[bat] )); then
   alias cat="bat --paging=never"
 fi

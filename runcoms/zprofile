@@ -122,7 +122,6 @@ export TILLER_NAMESPACE=tiller
 export GO111MODULE=on
 export GOROOT="$HOMEBREW_PREFIX/opt/go/libexec"
 #export GOPATH=$HOME/go
-export BAT_THEME=gruvbox-dark
 
 spotipy_env_file="$HOME/.dotfiles/zsh/.zprezto/spotipy.zsh"
 
