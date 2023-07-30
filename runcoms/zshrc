@@ -390,8 +390,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# Vim
+# Neovim
 export LAZY_NVIM_DEV_PATH=~/.dotfiles/nvim/lua/dev
+
+export NVIM_NODE_HOST_PROG_PATH="$HOME/.nodenv/versions/20.2.0/bin"
 
 work_config_entrypoint_post="${HOME}/.dotfiles/work-entrypoint.post.sh"
 if [[ -f  $work_config_entrypoint_post ]]; then
