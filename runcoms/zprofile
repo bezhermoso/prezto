@@ -138,3 +138,5 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 # Added by Toolbox App
 export PATH="$PATH:/Users/bez/Library/Application Support/JetBrains/Toolbox/scripts"
 
+# Make tmux-256color work on macOS. See https://gpanders.com/blog/the-definitive-guide-to-using-tmux-256color-on-macos/
+export TERMINFO_DIRS="$TERMINFO_DIRS:$HOME/.local/share/terminfo"
