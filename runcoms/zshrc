@@ -370,11 +370,17 @@ fi
 
 alias kb="kubectl"
 
+if (( $+commands[yt-dlp] )); then
+  alias youtube-dl="yt-dlp"
+fi
+
 # Load man page as PDF in Preview
 # From: https://mjtsai.com/blog/2022/11/20/viewing-man-pages-on-ventura/
 function manpdf() {
   mandoc -T pdf "$(/usr/bin/man -w $@)" | open -fa Preview
 }
+
+export LG_CONFIG_FILE=$HOME/.dotfiles/lazygit/config.yml
 
 #export PROMPT_EOL_MARK='%K{8}%F{0}%%%f%k'
 #
@@ -402,9 +408,5 @@ work_config_entrypoint_post="${HOME}/.dotfiles/work-entrypoint.post.sh"
 if [[ -f  $work_config_entrypoint_post ]]; then
   echo "Loading \$WORK post-configuration..."
   source $work_config_entrypoint_post
-fi
-
-if (( $+commands[yt-dlp] )); then
-  alias youtube-dl="yt-dlp"
 fi
 
