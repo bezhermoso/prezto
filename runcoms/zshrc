@@ -18,6 +18,10 @@ if [[ -f $HOME/.dotfiles/base16-fzf/.git ]]; then
   export BASE16_FZF_PATH="$HOME/.dotfiles/base16-fzf"
 fi
 
+# Tells base16-shell to export colors as BASE16_COLOR_*_HEX.
+# Some scripts rely on this e.g. delta hook
+export BASE16_SHELL_ENABLE_VARS=1
+
 BASE16_SHELL_PATH="$HOME/.dotfiles/base16-shell"
 [ -n "$PS1" ] && \
   [ -s "$BASE16_SHELL_PATH/profile_helper.sh" ] && \
