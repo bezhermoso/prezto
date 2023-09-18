@@ -124,7 +124,7 @@ bindkey -M visual S add-surround
 KEYTIMEOUT=1
 
 
-fpath=($HOME/.dotfiles/zsh/functions /usr/local/share/zsh-completions $fpath)
+fpath=($HOME/.dotfiles/zsh/functions /usr/local/share/zsh-completions $HOME/.local/share/zsh/functions $fpath)
 
 ### ENVIRONMENT MANAGERS
 # rbenv
