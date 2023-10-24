@@ -413,3 +413,5 @@ if [[ -f  $work_config_entrypoint_post ]]; then
   echo "Loading \$WORK post-configuration..."
   source $work_config_entrypoint_post
 fi
+
+HELPDIR=$(command brew --prefix)/share/zsh/help
