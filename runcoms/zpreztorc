@@ -41,7 +41,6 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
-  'fasd' \
   'git' \
   'jump-to-git-root' \
   'osx' \
