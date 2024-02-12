@@ -21,12 +21,6 @@ fi
 # Editors
 #
 
-#export ALTERNATE_EDITOR=''
-#export EDITOR='emacsclient -t'
-#export VISUAL='emacsclient -t'
-#export EDITOR='nvim'
-#export VISUAL='nvim'
-#export PAGER='less'
 if [[ -z "$EDITOR" ]]; then
   export EDITOR='nvim'
 fi
@@ -50,10 +44,6 @@ fi
 #
 
 export PATH="$HOME/Library/Python/3.5/bin:$PATH"
-
-# Drupal Console
-export PATH="/Projects/Personal/DrupalConsole/bin:$PATH"
-
 
 # phpbrew
 [[ -s "${HOME}/.phpbrew/bashrc" ]] && source "$HOME/.phpbrew/bashrc"
@@ -121,13 +111,6 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export TILLER_NAMESPACE=tiller
 export GO111MODULE=on
 export GOROOT="$HOMEBREW_PREFIX/opt/go/libexec"
-#export GOPATH=$HOME/go
-
-spotipy_env_file="$HOME/.dotfiles/zsh/.zprezto/spotipy.zsh"
-
-if [[ -f $spotipy_env_file ]]; then
-  source $HOME/.dotfiles/zsh/.zprezto/spotipy.zsh
-fi
 
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
