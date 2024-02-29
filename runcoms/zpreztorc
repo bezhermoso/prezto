@@ -32,7 +32,6 @@ zstyle ':prezto:*:*' color 'yes'
 # The order matters.
 zstyle ':prezto:load' pmodule \
   'async' \
-  'autosuggestions' \
   'environment' \
   'terminal' \
   'editor' \
@@ -41,6 +40,8 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
+  'fzf-tab' \
+  'autosuggestions' \
   'git' \
   'jump-to-git-root' \
   'osx' \
@@ -293,3 +294,9 @@ zstyle ':prezto:module:syntax-highlighting' pattern \
 # before deleting or overwriting files. Set to 'no' to disable this safer
 # behavior.
 zstyle ':prezto:module:utility' safe-ops yes
+
+# Use tmux popup
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+# Don't show any preview in FZF picker for kubectl completions
+zstyle ':fzf-tab:complete:*' fzf-flags '--no-preview'
+zstyle ':fzf-tab:complete:*' popup-min-size 50 0

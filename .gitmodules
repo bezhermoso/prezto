@@ -50,3 +50,6 @@
 [submodule "modules/jump-to-git-root"]
 	path = modules/jump-to-git-root
 	url = git@github.com:bezhermoso/jump-to-git-root.git
+[submodule "fzf-tab"]
+	path = contrib/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
