@@ -41,6 +41,7 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'fzf-tab' \
+  'fzf-git' \
   'autosuggestions' \
   'git' \
   'jump-to-git-root' \

@@ -53,3 +53,6 @@
 [submodule "fzf-tab"]
 	path = contrib/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
+[submodule "fzf-git"]
+	path = contrib/fzf-git/external
+	url = git@github.com:junegunn/fzf-git.sh.git
