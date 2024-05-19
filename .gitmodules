@@ -56,3 +56,6 @@
 [submodule "fzf-git"]
 	path = contrib/fzf-git/external
 	url = git@github.com:junegunn/fzf-git.sh.git
+[submodule "jump-to-project-root"]
+	path = modules/jump-to-project-root
+	url = git@github.com:bezhermoso/jump-to-project-root.git

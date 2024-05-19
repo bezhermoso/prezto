@@ -45,6 +45,7 @@ zstyle ':prezto:load' pmodule \
   'autosuggestions' \
   'git' \
   'jump-to-git-root' \
+  'jump-to-project-root' \
   'osx' \
   'tmux-lang-versions' \
   'syntax-highlighting' \
